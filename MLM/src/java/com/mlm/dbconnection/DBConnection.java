@@ -13,14 +13,14 @@ import java.sql.*;
 public class DBConnection {
         String error=null;
 	Connection con = null;
-	String url = "";
-	String username = "";
-	String password = "";
+	String url = "jdbc:oracle:thin:@localhost:1521:XE";
+	String username = "mlm";
+	String password = "mlm";
 	Statement st = null;
 	ResultSet rs;
 	public DBConnection(){
 		try {
-			Class.forName("com.mysql.jdbc.Driver").newInstance();
+			Class.forName("oracle.jdbc.OracleDriver").newInstance();
 			con = DriverManager.getConnection(url,username,password);
 			error=null;
 		} catch (Exception e) {
@@ -33,13 +33,13 @@ public class DBConnection {
 	}
 	public void queryiu(String sql){
 		try {
-			st = con.createStatement();
-			st.execute(sql);
-			error=null;
+                        st = con.createStatement();
+			st.execute(sql);                      
+			//error=null;
 		}catch (Exception e) {
 			// TODO Auto-generated catch block
 			error=e.toString();
-			System.out.println(e.getMessage());
+			System.out.println("erreor"+e.toString());
 		}
 	}
 	public ResultSet querys(String sql){
