@@ -39,7 +39,7 @@ public class DBConnection {
 		}catch (Exception e) {
 			// TODO Auto-generated catch block
 			error=e.toString();
-			System.out.println("erreor"+e.toString());
+			System.out.println("erreor"+e.getLocalizedMessage());
 		}
 	}
 	public ResultSet querys(String sql){
