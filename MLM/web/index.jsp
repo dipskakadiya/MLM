@@ -51,7 +51,7 @@
         <div id="login" >
           <div class="ribbon"></div>
           <div class="inner clearfix">
-          <div class="logo" ><img src="images/logo/logo_login.png" alt="ziceAdmin" /></div>
+          <div class="logo" ><img src="images/logo/logo_admin.png" alt="ziceAdmin" /></div>
           <div class="formLogin">
          <form name="formLogin"  id="formLogin" method="post">
       
