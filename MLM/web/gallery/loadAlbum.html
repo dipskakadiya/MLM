@@ -1,0 +1,130 @@
+<script type="text/javascript">
+$(function() {		  	
+	// move images  to  news album
+	$('.album').droppable({
+		hoverClass	: 'over',
+		activeClass	: 'dragging',
+		tolerance		:  'pointer',
+		drop				:   function(event,ui){
+								   if( $( this).hasClass('selected') ) return false;
+											   loading('Moving',0);
+											   var album = $(this).attr('id');		
+											   var datavalue='newalbumid='+album+'&lastalbumid='+ ui.draggable.imgdata(2)+'&picid='+ ui.draggable.imgdata(0); 
+											   
+											  $.ajax({ // Call Aajx
+												  url				: "gallery/move.php",
+												  data			: datavalue,
+												  cache		: false,
+												  type			: "POST",
+												  dataType	: 'json',
+												  success	: function(data){	
+																		if(data.check==0){ 
+																			  alertMessage('error','Error ;)) Try  Agian');
+																			  return false;
+																	   }
+																	  ui.helper.fadeOut(function(){ui.helper.remove();});				
+																	  $('#albumsLoad').fadeOut().load('gallery/loadAlbum.html').fadeIn(function(){ 
+																				$('#albumsLoad #albumsList').find("#"+ui.draggable.imgdata(2)).addClass('selected');
+																				unloading(); 																							
+																	  });		
+												  					}
+											  }); // End Call Aajx
+								  
+								  ui.helper.fadeOut(400);
+								  setTimeout("unloading()",1500); 		
+							  }
+	});
+	// mouseenter Over album with  CSS3
+	$(".preview").delegate('img', 'mouseenter', function() {
+		  if ($(this).hasClass('stackphotos')) {
+		  var $parent = $(this).parent();
+				$parent.find('img#photo1').addClass('rotate1');
+				$parent.find('img#photo2').addClass('rotate2');
+				$parent.find('img#photo3').addClass('rotate3');
+		  }
+	  }).delegate('img', 'mouseleave', function() {
+				$('img#photo1').removeClass('rotate1');
+				$('img#photo2').removeClass('rotate2');
+				$('img#photo3').removeClass('rotate3');
+	});
+	// jScrollPane  Overflow
+	$('#albumsList').jScrollPane({ autoReinitialise: true });
+	$('.album.load').live('click',function(e){
+		  $('.album').removeClass('selected');
+		  var albumid=$(this).attr('id');
+		  $(this).addClass('selected');
+		  loadalbum(albumid);
+	});
+	//Load Album
+	function loadalbum(albumid){
+			loading('Loading');
+			$('.screen-msg').hide();
+			$('#imageLoad').load("gallery/loadpics08f0.html?albumid="+albumid,function(){
+			  imgRow();
+						  $("#uploadAlbum").attr('href','modalupload08f0.html?albumid='+albumid); 	
+						  $("#uploadDisableBut").hide();
+						  $('#uploadAlbum').removeClass('disable secure ').addClass('special add  ');
+
+			  unloading();												   
+			});
+		}
+				  
+ }); 
+</script>
+<div id="albumsList">
+	<div class="album load" id="220">
+		<div class="preview">
+			<img width="130" id="photo1" class="stackphotos"
+				src="gallery/s/Q87FVoypd9GgClUs5I2R3rHnvfhTkbS1-WQ7KJVqzM1mLaXDT56vZGpdlSwN80Ye9.html"
+				alt="Thumbnail" /> <img width="130" id="photo2" class="stackphotos"
+				src="gallery/s/XtoLEkV3gh8uU9jyCIRrWvB1mNGzPQi4-TYdDAb24HrLP3ofNtxpZSJg7FWUCGslu.html"
+				alt="Thumbnail" /> <img width="130" id="photo3" class="stackphotos"
+				src="gallery/s/Hfx03PsiQB8EjuKhTRnmle5C9at2cMDG-0jKWRnXq6YCb7kwZSu3oQDFU9vNJhBt8.html"
+				alt="Thumbnail" />
+			<div style="clear: both"></div>
+		</div>
+
+		<div class="title">sdrgsdfgdf</div>
+		<div class="stats">
+			Images: <span class="picCount">3</span>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<div class="album load" id="219">
+		<div class="preview">
+			<img width="130" id="photo1" class="stackphotos"
+				src="gallery/s/A1ub9w5mqiXg8pJQEy4Vr3CHlTsh2YSL-gZbNnzFxmlHwQf6M9v7otBU3Asp8SVWE.html"
+				alt="Thumbnail" /> <img width="130" id="photo2" class="stackphotos"
+				src="gallery/s/Q7NFigzHySIpCcxhblBV6weJ3nMAXDEq-sJxi18jfymX2So4NcuDA7gLpVrzP5w0I.html"
+				alt="Thumbnail" /> <img width="130" id="photo3" class="stackphotos"
+				src="gallery/s/24tHV3xiyBoAaFvdKWb67sJGLPfc8nXu-BTuV9GYXk6hQnly4vpmPSKx1RbHZFaqA.html"
+				alt="Thumbnail" />
+			<div style="clear: both"></div>
+		</div>
+
+		<div class="title">2013-01-10</div>
+		<div class="stats">
+			Images: <span class="picCount">5</span>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<div class="album load" id="218">
+		<div class="preview">
+			<img width="130" id="photo1" class="stackphotos"
+				src="gallery/s/tY2fH6VIRgJhWa9rwMjzuLleFyZTN0DC-sLIdcoNxHp8bgS73n0UFaMVPCu9Dw4ml.html"
+				alt="Thumbnail" /> <img width="130" id="photo2" class="stackphotos"
+				src="gallery/s/uq0SNgBTd7sLi3IPyQWAZcCb98U2trKR-Q7KvFew3sJR1g8Uqt0cTkjNEPronhl29.html"
+				alt="Thumbnail" /> <img width="130" id="photo3" class="stackphotos"
+				src="gallery/s/KD3puvhx1Yf7s6L2BdmXPr0iA4FUyJlq-o0Y7l9prSzDVfsInbkit6hPEdyQ2aXFM.html"
+				alt="Thumbnail" />
+			<div style="clear: both"></div>
+		</div>
+
+		<div class="title">2013-01-09</div>
+		<div class="stats">
+			Images: <span class="picCount">3</span>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<!-- End albumsList -->

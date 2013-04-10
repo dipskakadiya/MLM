@@ -1,0 +1,84 @@
+.ui-timepicker-div .ui-widget-header {
+	margin-bottom: 0px;
+	background-color: #a4d143 !important;
+	border: none;
+}
+
+.ui-timepicker-div .time-title {
+	padding: 5px;
+	color: #FFF;
+	text-transform: uppercase;
+	text-shadow: 1px 1px 2px #141014;
+}
+
+.ui-timepicker-div dl {
+	text-align: left;
+	padding-left: 10px;
+	font-size: 12px;
+	padding-bottom: 5px;
+	color: #a7a7a7;
+	text-transform: uppercase;
+	/*	font-weight:600;*/
+}
+
+.ui-timepicker-div dl dt {
+	height: 35px;
+}
+
+.ui-timepicker-div dl dd {
+	margin: -25px 10px 10px 65px;
+}
+
+.ui-timepicker-div
+ 
+dl
+ 
+dd
+:last-child
+,
+{
+margin
+:
+ 
+-25
+px
+ 
+10
+px
+ 
+0
+px
+ 
+65
+px
+;
+
+
+}
+.ui-timepicker-div td { /*	font-size: 10px;*/
+	
+}
+
+.ui-tpicker-grid-label {
+	background: none;
+	border: 0px #666 solid;
+	margin: 55px;
+	height: 35px;
+	padding: 0;
+}
+
+.ui_tpicker_time {
+	font-family: "Myriad Pro", Arial, Helvetica, sans-serif;
+	font-size: 30px !important;
+	color: #000000;
+	text-align: center;
+}
+
+.labelTime,.labelTimeSelect {
+	position: absolute;
+	margin-top: 6px;
+}
+
+.labelTimeSelect {
+	margin-top: 22px;
+}
