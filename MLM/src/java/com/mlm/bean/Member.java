@@ -4,7 +4,7 @@
  */
 package com.mlm.bean;
 
-import com.mlm.Utility.DBConnection;
+import com.mlm.dbutility.DBConnection;
 
 
 /**
