@@ -171,12 +171,22 @@
 																</a></li>
 															</ul>
 
-															<div id="step-1" style="width: 100%; height: 350px">
+															<div id="step-1" style="width: 100%; height: 450px">
 																<h2 class="StepTitle">Step 1: Account Details</h2>
 
 																<div class="section">
-																	<label> Login Account <small>Text
-																			custom</small></label>
+																	<label> Login Account <small></small></label>
+																	<div>
+                                                                                                                                            <input type="text" readonly="readonly"
+																			name="userid" id="userid" 
+																			class="medium" /><label id="msg_username"
+																			class="red"></label> <span class="f_help">
+																			Unique Identification No</span>
+																	</div>
+
+																</div>
+                                                                                                                                <div class="section">
+																	<label> Login Account <small></small></label>
 																	<div>
 																		<input type="text" placeholder="Username"
 																			name="username" id="username" 
@@ -246,7 +256,7 @@
 																	<div>
 																		<input type="text" placeholder="Lastname"
 																			class="medium birthday"
-																			name="birthday" id="birthday" /><label
+																			name="birthdate" id="birthday" /><label
 																			id="msg_birthday" class="red"></label>
 																	</div>
 																</div>
@@ -298,7 +308,7 @@
 																		<label>Select City<small></small></label>
 																		<div>
 																			<select data-placeholder="Choose a City..." id="city"
-																				name="coty" class="chzn-select" tabindex="2">
+																				name="city" class="chzn-select" tabindex="2">
 																				<option value=""></option>
 																				<option value="United States">United States</option>
 																			</select> <label id="msg_city" class="red"></label>
