@@ -4,10 +4,12 @@
  */
 package com.mlm.action;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  *
  * @author sai
  */
 public interface Action {
-    public void execute();
+    public void execute(HttpServletRequest request);
 }

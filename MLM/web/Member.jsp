@@ -144,8 +144,8 @@
 												<!-- End widget-header -->
 
 												<div class="widget-content">
-													<form action="#" method="POST">
-														<input type="hidden" name="issubmit" value="1">
+													<form action="Controller" method="get" id="Addmemeber" >
+														<input type="hidden" name="Action" value="Addmember">
 														<!-- Smart Wizard -->
 														<div id="wizardvalidate" class="swMain">
 															<ul>
