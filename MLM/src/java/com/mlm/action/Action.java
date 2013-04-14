@@ -11,5 +11,5 @@ import javax.servlet.http.HttpServletRequest;
  * @author sai
  */
 public interface Action {
-    public void execute(HttpServletRequest request);
+    public void execute(Object objbean);
 }

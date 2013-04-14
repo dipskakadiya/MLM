@@ -4,7 +4,6 @@
  */
 package com.mlm.controller;
 
-import com.mlm.model.AddMemberAction;
 import com.mlm.action.*;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import com.mlm.model.AddMemberAction;
 
 /**
  *
@@ -36,14 +36,14 @@ public class Controller extends HttpServlet {
         try {
             /* TODO output your page here. You may use following sample code. */
             Action Act=null;
+            Object Objbean=null;
             String reurl=null;
-            System.out.print("start");
             if(request.getParameter("Action").equals("Addmember")){
                  Act=new AddMemberAction();
                  reurl="Product.jsp";
             }
-            Act.execute(request);
             
+            Act.execute(Objbean);
             response.sendRedirect(reurl);
         } finally {            
             out.close();

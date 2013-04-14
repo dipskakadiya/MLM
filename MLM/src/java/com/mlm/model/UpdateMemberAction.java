@@ -12,16 +12,15 @@ import javax.servlet.http.HttpServletRequest;
  *
  * @author sai
  */
-public class AddMemberAction implements Action{
+public class UpdateMemberAction implements Action{
     DBConnection db;
-    public AddMemberAction(){
+    public UpdateMemberAction(){
         db=new DBConnection();
     }
     
     @Override
     public void execute(Object objbean) {
-        db.queryiu("update fnvn ");     
-        
+          db.queryiu("");
     }
     
 }
