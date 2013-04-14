@@ -7,6 +7,7 @@ package com.mlm.model;
 import com.mlm.action.Action;
 import com.mlm.dbutility.DBConnection;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  *
@@ -17,10 +18,10 @@ public class UpdateMemberAction implements Action{
     public UpdateMemberAction(){
         db=new DBConnection();
     }
-    
+
     @Override
-    public void execute(Object objbean) {
-          db.queryiu("");
+    public String execute(HttpServletRequest req, HttpServletResponse res) {
+         db.queryiu("update fnvn "); 
+         return "";
     }
-    
 }

@@ -200,21 +200,22 @@
                                     </div>
                                     <!--tab1-->
                                     <div id="tab2" class="tab_content">
-                                        <form id="validation_demo" action="#">
-
+                                        <form id="validation_demo" method="post" action="Controller">
+                                            <input type="hidden" name="Action" id="Action"
+                                                               value="AddTrade" class="validate[required] medium" />
                                             <div class="section ">
                                                 <div class="span2 numericonly">
                                                     <label> Order ID<small>Order Identity Number</small></label>
                                                     <div>
-                                                        <input type="text" name="menu" id="menu"
-                                                               readonly="readonly" class="validate[required] medium" />
+                                                        <input type="text" name="orderid" id="orderid"
+                                                               readonly="readonly" value="1" class="validate[required] medium" />
                                                     </div>
                                                 </div>
                                                 <div>
                                                     <label>Date<small>Transection Date</small></label>
                                                     <div>
                                                         <input type="text" id="birthday"
-                                                               class="datepicker  validate[required]" name="birthday" />
+                                                               class="datepicker  validate[required]" name="Orderdate" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -275,15 +276,21 @@
                                                     <thead>
                                                         <tr>
                                                             <th>Gross Total</th>
-                                                            <th id="T_GrossAll">0</th>
+                                                            <th id="T_GrossAll">0
+                                                                <input type='hidden' name='T_GrossAll' value='0'/>
+                                                            </th>
                                                         </tr>
                                                         <tr>
                                                             <th>Tax Total</th>
-                                                            <th id="T_TaxAll">0</th>
+                                                            <th id="T_TaxAll">0
+                                                                <input type='hidden' name='T_TaxAll' value='0'/>
+                                                            </th>
                                                         </tr>
                                                         <tr>
                                                             <th>Discount</th>
-                                                            <th id="Discount">0</th>
+                                                            <th id="Discount">0
+                                                            <input type='hidden' name='Discount' value='0'/>
+                                                            </th>
                                                         </tr>
                                                     </thead>
                                                 </table>                             
@@ -301,7 +308,9 @@
                                             <div style="width: 475px" class="span6"></div>
                                             <div class="section span6">
                                                 <div class="span6"><h1>Total Amount:</h1></div>
-                                                <div class="span6"><h3 id="T_AmountAll">0</h3></div>
+                                                <div class="span6"><h3 id="T_AmountAll">0
+                                                        <input type='hidden' name='T_AmountAll' value='0'/>
+                                                    </h3></div>
                                             </div>
                                             <div class="section">
                                                 <div>
@@ -341,7 +350,7 @@
     jQuery(document).ready(function() {
         jQuery("#demovalidation").validationEngine({
             prettySelect : true,
-            useSuffix: "_chzn",
+            useSuffix: "_chzn"
         });
 				
         // Example Overlay form

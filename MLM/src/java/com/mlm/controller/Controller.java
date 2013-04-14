@@ -5,20 +5,22 @@
 package com.mlm.controller;
 
 import com.mlm.action.*;
+import com.mlm.dbutility.ObjectCreator;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Properties;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.mlm.model.AddMemberAction;
 
 /**
  *
  * @author sai
  */
 public class Controller extends HttpServlet {
-
+    private final static String ACTION_MAPPING = "com/mlm/controller/ActionMapping.properties"; 
     /**
      * Processes requests for both HTTP
      * <code>GET</code> and
@@ -35,16 +37,19 @@ public class Controller extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
             /* TODO output your page here. You may use following sample code. */
-            Action Act=null;
-            Object Objbean=null;
-            String reurl=null;
-            if(request.getParameter("Action").equals("Addmember")){
-                 Act=new AddMemberAction();
-                 reurl="Product.jsp";
-            }
             
-            Act.execute(Objbean);
-            response.sendRedirect(reurl);
+            String theAction = request.getParameter("Action");
+            Properties  map = new Properties();
+            map.load(this.getClass().getClassLoader().getResourceAsStream( ACTION_MAPPING ));
+            String action_class = map.getProperty(theAction); 
+            Action action = (Action) ObjectCreator.createObject(action_class);  
+            request.setAttribute("cur_user",1);
+            String view = action.execute(request, response);
+
+           RequestDispatcher rd = request.getRequestDispatcher(view);
+           rd.forward(request, response);    
+
+           
         } finally {            
             out.close();
         }

@@ -6,7 +6,7 @@
 				class="ico gray shadow window"></span><b>Member</b></a>
 			<ul>
 				<li><a href="Member.jsp">Manage Mem.</a></li>
-				<li><a href="#">Mem. Chart</a></li>
+				<li><a href="Controller?Action=ShowMemeberChain">Mem. Chart</a></li>
 				<li><a href="ApproveMember.jsp">Approve Mem.</a></li>
 			</ul></li>
 		<li><a href="Product.jsp"><span class="ico gray  dimensions"></span><b>Product</b></a>
