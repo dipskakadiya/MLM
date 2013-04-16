@@ -404,7 +404,8 @@
 
 <script type="text/javascript" src="components/arbor/mxh7kqd.js"></script>
 <!--<link rel="stylesheet" href="plugins/arbor/site.css" type="text/css" charset="utf-8">-->
-<canvas id="sitemap" width="900" height="650" style="background-color: rgba(35, 35, 35, .4);" ></canvas>
+<canvas id="sitemap" width="900" height="650" ></canvas>
+<!--style="background-color: rgba(35, 35, 35, .4);"-->
 <script src="components/arbor/jquery.address-1.4.min.js"></script>
 <script src="components/arbor/arbor.js"></script>
 <script src="components/arbor/arbor-tween.js"></script>

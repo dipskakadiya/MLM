@@ -18,7 +18,7 @@
 				class="ico gray shadow   encrypt"></span><b>Trade</b> </a>
 			<ul>
 				<li><a href="Trade.jsp"> Trade </a></li>
-				<li><a href="Trade_All.jsp">View Trade</a></li>
+				<li><a href="Controller?Action=ViewTrade">View Trade</a></li>
 			</ul></li>
 		<li><a href="Payment.jsp"><span
 				class="ico gray shadow  spreadsheet"></span><b>Payment</b> </a></li>
