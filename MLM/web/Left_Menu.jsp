@@ -14,20 +14,27 @@
 				<li><a href="Product.jsp">Product</a></li>
 				<li><a href="Category.jsp"> Category </a></li>
 			</ul></li>
-		<li><a href="Trade.jsp"><span
+		<li><a href="Controller?Action=ShowTrade"><span
 				class="ico gray shadow   encrypt"></span><b>Trade</b> </a>
 			<ul>
-				<li><a href="Trade.jsp"> Trade </a></li>
+				<li><a href="Controller?Action=ShowTrade"> Trade </a></li>
 				<li><a href="Controller?Action=ViewTrade">View Trade</a></li>
 			</ul></li>
 		<li><a href="Payment.jsp"><span
 				class="ico gray shadow  spreadsheet"></span><b>Payment</b> </a></li>
-		<li><a href="gallery.html"><span
+		<li><a href=""><span
+				class="ico gray shadow   satellite"></span><b>Commission</b> </a>
+			<ul>
+				<li><a href=""> Commission </a></li>
+				<li><a href="">Withdraw</a></li>
+			</ul></li>
+		
+               <li><a href="gallery.html"><span
 				class="ico gray shadow pictures_folder"></span><b>Reports </b></a></li>
 		<li><a href="Trash.jsp"><span
 				class="ico gray  shadow firewall"></span><b>Trash</b></a></li>
 		<li><a href="addCoupon.jsp"><span
-				class="ico gray  shadow firewall"></span><b>Coupon</b></a></li>
+				class="ico gray  shadow location"></span><b>Coupon</b></a></li>
 	</ul>
 </div>
 

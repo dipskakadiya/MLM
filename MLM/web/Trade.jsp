@@ -1,7 +1,7 @@
 <!DOCTYPE html>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html lang="en">
     <head>
-
         <title>Member Detail</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <jsp:include page="Css_Jq.jsp"></jsp:include>
@@ -25,8 +25,6 @@
                         </div>
                         <!-- End widget-header -->
                         <div class="widget-content">
-
-
                             <div id="UITab" class="clearfix" style="position: relative;">
                                 <ul class="tabs">
                                     <li><a href="#tab1"> Add to Cart<img
@@ -34,7 +32,6 @@
                                     <li><a href="#tab2"> View Cart <img
                                                 src="images/icon/new.gif" width="20" height="9" /></a></li>
                                 </ul>
-
                                 <div class="tab_container">
                                     <div id="tab1" class="tab_content">
                                         <div class="widget  span12 clearfix">
@@ -42,7 +39,6 @@
                                                 <span><i class="icon-road"></i> Select Product</span>
                                             </div>
                                             <!-- End widget-header -->
-
                                             <div class="widget-content">
                                                 <!-- CartZone-->
                                                 <div class="CartZone">
@@ -55,139 +51,24 @@
                                                     <span class="ico gray hand_point"></span> Drag images ,Drop
                                                     CartZone to AddCart
                                                 </div>
-
+                                                <!-- Categories List -->
                                                 <div>
-                                                    <label>Select Country<small></small></label>
+                                                    <label>Select Categories<small></small></label>
                                                     <div>
-                                                        <select data-placeholder="Choose a Country..."
+                                                        <select id="Categories" data-placeholder="Choose a Categories..."
                                                                 class="chzn-select validate[required]" tabindex="2">
-                                                            <option value=""></option>
-                                                            <option value="United States">United States</option>
-                                                            <option value="Zambia">Zambia</option>
-                                                            <option value="Zimbabwe">Zimbabwe</option>
+                                                            <c:forEach items="${Categories}" var="s">
+                                                                <option value="${s.getCatid()}">${s.getCatname()}</option>
+                                                            </c:forEach>
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <br />
+                                                <br />                                                    
+                                                <!-- Product List -->    
                                                 <div class="section" style="height: 220px; overflow-x: auto;">
-                                                    <ul id="sortable" class="clearfix">
-                                                        <li class="albumImage">
-                                                            <div class="picHolder">
-                                                                <span class="image_highlight"></span>
-                                                                <img src="exampic/07.jpg" title="Drag Image to delete" />
-                                                                <div class="picTitle">Laptop</div>
-                                                                <ul class="dataImg">
-                                                                    <li>1</li><!-- product ID -->
-                                                                    <li>Laptop</li><!-- Product Name -->
-                                                                    <li>250</li><!-- Sales Rate -->
-                                                                    <li>2</li><!-- Tax on Item -->
-                                                                    <li>23</li><!-- Stock -->
-                                                                </ul>
-                                                            </div>
-                                                        </li>
+                                                    <ul id="sortable" class="clearfix ProductList">
+                                                        
 
-                                                        <li class="albumImage">
-                                                            <div class="picHolder">
-                                                                <span class="image_highlight"></span>
-                                                                <img src="exampic/30.jpg" title="Drag Image to delete" />
-                                                                <div class="picTitle">DSC00252.jpg</div>
-                                                                <ul class="dataImg">
-                                                                    <li>2</li><!-- product ID -->
-                                                                    <li>Laptop</li><!-- Product Name -->
-                                                                    <li>250</li><!-- Sales Rate -->
-                                                                    <li>2</li><!-- Tax on Item -->
-                                                                    <li>23</li><!-- Stock -->
-                                                                </ul>
-                                                            </div>
-                                                        </li>
-
-                                                        <li class="albumImage">
-                                                            <div class="picHolder">
-                                                                <span class="image_highlight"></span>
-                                                                <img src="exampic/06.jpg" title="Drag Image to delete" />
-                                                                <div class="picTitle">DSC00253.jpg</div>
-                                                                <ul class="dataImg">
-                                                                    <li>3</li><!-- product ID -->
-                                                                    <li>Laptop</li><!-- Product Name -->
-                                                                    <li>250</li><!-- Sales Rate -->
-                                                                    <li>2</li><!-- Tax on Item -->
-                                                                    <li>23</li><!-- Stock -->
-                                                                </ul>
-                                                            </div>
-                                                        </li>
-
-                                                        <li class="albumImage">
-                                                            <div class="picHolder">
-                                                                <span class="image_highlight"></span>
-                                                                <img src="exampic/02.jpg" title="Drag Image to delete" />
-                                                                <div class="picTitle">DSC00254.jpg</div>
-                                                                <ul class="dataImg">
-                                                                    <li>4</li><!-- product ID -->
-                                                                    <li>Laptop</li><!-- Product Name -->
-                                                                    <li>250</li><!-- Sales Rate -->
-                                                                    <li>2</li><!-- Tax on Item -->
-                                                                    <li>23</li><!-- Stock -->
-                                                                </ul>
-                                                            </div>
-                                                        </li>
-                                                        <li class="albumImage">
-                                                            <div class="picHolder">
-                                                                <span class="image_highlight"></span>
-                                                                <img src="exampic/07.jpg" title="Drag Image to delete" />
-                                                                <div class="picTitle">DSC00251.jpg</div>
-                                                                <ul class="dataImg">
-                                                                    <li>5</li><!-- product ID -->
-                                                                    <li>Laptop</li><!-- Product Name -->
-                                                                    <li>250</li><!-- Sales Rate -->
-                                                                    <li>2</li><!-- Tax on Item -->
-                                                                    <li>23</li><!-- Stock -->
-                                                                </ul>
-                                                            </div>
-                                                        </li>
-
-                                                        <li class="albumImage">
-                                                            <div class="picHolder">
-                                                                <span class="image_highlight"></span>
-                                                                <img src="exampic/30.jpg" title="Drag Image to delete" />
-                                                                <div class="picTitle">DSC00252.jpg</div>
-                                                                <ul class="dataImg">
-                                                                    <li>6</li><!-- product ID -->
-                                                                    <li>Laptop</li><!-- Product Name -->
-                                                                    <li>250</li><!-- Sales Rate -->
-                                                                    <li>2</li><!-- Tax on Item -->
-                                                                    <li>23</li><!-- Stock -->
-                                                                </ul>														</div>
-                                                        </li>
-
-                                                        <li class="albumImage">
-                                                            <div class="picHolder">
-                                                                <span class="image_highlight"></span>
-                                                                <img src="exampic/06.jpg" title="Drag Image to delete" />
-                                                                <div class="picTitle">DSC00253.jpg</div>
-                                                                <ul class="dataImg">
-                                                                    <li>7</li><!-- product ID -->
-                                                                    <li>Laptop</li><!-- Product Name -->
-                                                                    <li>250</li><!-- Sales Rate -->
-                                                                    <li>2</li><!-- Tax on Item -->
-                                                                    <li>23</li><!-- Stock -->
-                                                                </ul>
-                                                            </div>
-                                                        </li>
-
-                                                        <li class="albumImage">
-                                                            <div class="picHolder">
-                                                                <span class="image_highlight"></span>
-                                                                <img src="exampic/02.jpg" title="Drag Image to delete" />
-                                                                <div class="picTitle">DSC00254.jpg</div>
-                                                                <ul class="dataImg">
-                                                                    <li>8</li><!-- product ID -->
-                                                                    <li>Laptop</li><!-- Product Name -->
-                                                                    <li>250</li><!-- Sales Rate -->
-                                                                    <li>2</li><!-- Tax on Item -->
-                                                                    <li>23</li><!-- Stock -->
-                                                                </ul>
-                                                            </div>
-                                                        </li>
 
                                                     </ul>
                                                 </div>
@@ -202,7 +83,7 @@
                                     <div id="tab2" class="tab_content">
                                         <form id="validation_demo" method="post" action="Controller">
                                             <input type="hidden" name="Action" id="Action"
-                                                               value="AddTrade" class="validate[required] medium" />
+                                                   value="AddTrade" class="validate[required] medium" />
                                             <div class="section ">
                                                 <div class="span2 numericonly">
                                                     <label> Order ID<small>Order Identity Number</small></label>
@@ -245,9 +126,9 @@
                                                     <thead>
                                                         <tr>
                                                             <th>
-                                                                <h1>Rules & Condition ...</h1>
-                                                            </th>
-                                                        </tr>
+                                                    <h1>Rules & Condition ...</h1>
+                                                    </th>
+                                                    </tr>
                                                     </thead>
                                                     <tbody >
                                                         <tr>
@@ -269,7 +150,7 @@
                                                             <td>6. order delivered after payment done so please after order first done payment.</td>
                                                         </tr>
                                                     </tbody>
-                                                 </table>
+                                                </table>
                                             </div>
                                             <div class="section span6" style="margin-top: 15px;">
                                                 <table class="table table-bordered">
@@ -289,7 +170,7 @@
                                                         <tr>
                                                             <th>Discount</th>
                                                             <th id="Discount">0
-                                                            <input type='hidden' name='Discount' value='0'/>
+                                                                <input type='hidden' name='Discount' value='0'/>
                                                             </th>
                                                         </tr>
                                                     </thead>
@@ -346,7 +227,7 @@
 </html>
 
 
-<script type="text/javascript">
+<script>
     jQuery(document).ready(function() {
         jQuery("#demovalidation").validationEngine({
             prettySelect : true,
@@ -487,7 +368,17 @@
         $('#T_AmountAll').html(t_AmountAll+"<input type='hidden' name='T_AmountAll' value='"+t_AmountAll+"'/>");
         $('#'+ProductQty).remove();
     }
-
-
+    
+    //Getting All Product
+    $.ajax({url:"Controller?Action=CallAjax&SubAction=GetProduct&id="+$('#Categories').val(),success:function(result){
+                $(".ProductList").html(result);
+            }}); 
+    $('#Categories').change( function() {
+        $.ajax({url:"Controller?Action=CallAjax&SubAction=GetProduct&id="+$(this).val(),success:function(result){
+                $(".ProductList").html(result);
+            }});
+    });
+    
+   
     //$(".CartZone").append('<img src="'+name.find('img').attr("src")+'" title="Drag Image to delete" />');
 </script>

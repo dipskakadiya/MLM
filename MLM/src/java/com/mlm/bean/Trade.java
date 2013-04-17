@@ -9,27 +9,27 @@ package com.mlm.bean;
  * @author sai
  */
 public class Trade {
-    private int order_id;
-    private int mem_id;
+    private Integer order_id;
+    private Integer mem_id;
     private String order_date;
-    private int T_gross;
-    private int T_tax;
-    private int Discount;
-    private int Total;
+    private Integer T_gross;
+    private Integer T_tax;
+    private Integer Discount;
+    private Integer Total;
 
-    public int getOrder_id() {
+    public Integer getOrder_id() {
         return order_id;
     }
 
-    public void setOrder_id(int order_id) {
+    public void setOrder_id(Integer order_id) {
         this.order_id = order_id;
     }
 
-    public int getMem_id() {
+    public Integer getMem_id() {
         return mem_id;
     }
 
-    public void setMem_id(int mem_id) {
+    public void setMem_id(Integer mem_id) {
         this.mem_id = mem_id;
     }
 
@@ -41,35 +41,36 @@ public class Trade {
         this.order_date = order_date;
     }
 
-    public int getT_gross() {
+    public Integer getT_gross() {
         return T_gross;
     }
 
-    public void setT_gross(int T_gross) {
+    public void setT_gross(Integer T_gross) {
         this.T_gross = T_gross;
     }
 
-    public int getT_tax() {
+    public Integer getT_tax() {
         return T_tax;
     }
 
-    public void setT_tax(int T_tax) {
+    public void setT_tax(Integer T_tax) {
         this.T_tax = T_tax;
     }
 
-    public int getDiscount() {
+    public Integer getDiscount() {
         return Discount;
     }
 
-    public void setDiscount(int Discount) {
+    public void setDiscount(Integer Discount) {
         this.Discount = Discount;
     }
 
-    public int getTotal() {
+    public Integer getTotal() {
         return Total;
     }
 
-    public void setTotal(int Total) {
+    public void setTotal(Integer Total) {
         this.Total = Total;
     }
+
 }

@@ -18,6 +18,7 @@ public class DBConnection {
 	String password = "mlm";
 	Statement st = null;
 	ResultSet rs;
+        Integer temp=null;
 	public DBConnection(){
 		try {
 			Class.forName("oracle.jdbc.OracleDriver").newInstance();
@@ -53,6 +54,21 @@ public class DBConnection {
 			System.out.println(e.getMessage());
 		}
 		return rs;
+	}
+        
+        public Integer queryint(String sql){
+                try {
+			st = con.createStatement();
+			rs=st.executeQuery(sql);
+                        rs.next();
+                        temp=rs.getInt(1);
+			error=null;
+		}catch (Exception e) {
+			// TODO Auto-generated catch block
+			error=e.toString();
+			System.out.println(e.getMessage());
+		}
+		return temp;
 	}
         
 }
