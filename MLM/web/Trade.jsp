@@ -27,9 +27,9 @@
                         <div class="widget-content">
                             <div id="UITab" class="clearfix" style="position: relative;">
                                 <ul class="tabs">
-                                    <li><a href="#tab1"> Add to Cart<img
+                                    <li id="tablink1"><a href="#tab1"> Add to Cart<img
                                                 src="images/icon/new.gif" width="20" height="9" /></a></li>
-                                    <li><a href="#tab2"> View Cart <img
+                                    <li id="tablink2"><a href="#tab2"> View Cart <img
                                                 src="images/icon/new.gif" width="20" height="9" /></a></li>
                                 </ul>
                                 <div class="tab_container">
@@ -67,7 +67,7 @@
                                                 <!-- Product List -->    
                                                 <div class="section" style="height: 220px; overflow-x: auto;">
                                                     <ul id="sortable" class="clearfix ProductList">
-                                                        
+
 
 
                                                     </ul>
@@ -89,14 +89,14 @@
                                                     <label> Order ID<small>Order Identity Number</small></label>
                                                     <div>
                                                         <input type="text" name="orderid" id="orderid"
-                                                               readonly="readonly" value="1" class="validate[required] medium" />
+                                                               readonly="readonly" value="<c:out value="${Trade.getOrder_id()}"/>" class="validate[required] medium" />
                                                     </div>
                                                 </div>
                                                 <div>
                                                     <label>Date<small>Transection Date</small></label>
                                                     <div>
                                                         <input type="text" id="birthday"
-                                                               class="datepicker  validate[required]" name="Orderdate" />
+                                                               class="datepicker  validate[required]" value="<c:out value="${Trade.getOrder_date()}"/>" name="Orderdate" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -157,21 +157,19 @@
                                                     <thead>
                                                         <tr>
                                                             <th>Gross Total</th>
-                                                            <th id="T_GrossAll">0
-                                                                <input type='hidden' name='T_GrossAll' value='0'/>
+                                                            <th id="T_GrossAll"><c:out value="${Trade.getT_gross()}"/>
+                                                                <input type='hidden' name='T_GrossAll' value='<c:out value="${Trade.getT_gross()}"/>'/>
                                                             </th>
                                                         </tr>
                                                         <tr>
                                                             <th>Tax Total</th>
-                                                            <th id="T_TaxAll">0
-                                                                <input type='hidden' name='T_TaxAll' value='0'/>
+                                                            <th id="T_TaxAll"><c:out value="${Trade.getT_tax()}"/>
+                                                                <input type='hidden' name='T_TaxAll' value='<c:out value="${Trade.getT_tax()}"/>'/>
                                                             </th>
                                                         </tr>
                                                         <tr>
                                                             <th>Discount</th>
-                                                            <th id="Discount">0
-                                                                <input type='hidden' name='Discount' value='0'/>
-                                                            </th>
+                                                            <th id="Discount">0</th>
                                                         </tr>
                                                     </thead>
                                                 </table>                             
@@ -179,8 +177,7 @@
                                             <div class="section">
                                                 <label style="margin-left:50px"> Coupan Code<small>Special Coupan</small></label>
                                                 <div style="margin-left:550px;">
-                                                    <input type="text" name="Remark" id="Remark"
-                                                           class="validate[required] medium" />
+                                                    <input type="text" name="coupan" id="coupan" class=" medium" />
                                                     <div>
                                                         <a class="uibutton">Applay</a>
                                                     </div>
@@ -189,8 +186,8 @@
                                             <div style="width: 475px" class="span6"></div>
                                             <div class="section span6">
                                                 <div class="span6"><h1>Total Amount:</h1></div>
-                                                <div class="span6"><h3 id="T_AmountAll">0
-                                                        <input type='hidden' name='T_AmountAll' value='0'/>
+                                                <div class="span6"><h3 id="T_AmountAll"><c:out value="${Trade.getTotal()+Trade.getDiscount()}"/>
+                                                        <input type='hidden' name='T_AmountAll' value='<c:out value="${Trade.getTotal()+Trade.getDiscount()}"/>'/>
                                                     </h3></div>
                                             </div>
                                             <div class="section">
@@ -233,46 +230,52 @@
             prettySelect : true,
             useSuffix: "_chzn"
         });
-				
-        // Example Overlay form
-        $(".on_load").live('click',function(){	
-            $('body').append('<div id="overlay"></div>');
-            $('#overlay').css('opacity',0.4).fadeIn(400);
-            var activeLoad = $(this).attr("name");		
-            var titleTabs = $(this).attr("title");		
-            $("ul.tabs li").hide();		
-            $('ul.tabs li').each(function(index) {
-                var activeTab = $('ul.tabs li:eq('+index+')').find("a").attr("href");			
-                if(activeTab==activeLoad){
-                    $("ul.tabs ").append('<li class=active><a href="'+activeLoad+'" class=" prev on_prev "  id="on_prev_pro" name="'+activeLoad+'" >'+titleTabs+'</a></li>');
-                    $("ul.tabs li:last").fadeIn();	
-                }
+        //For update Set 2nd tab Default    
+    <c:if test="${Trade.getTotal()>0 }">
+                $('#tab2').attr("style","display: block;");
+                $('#tab1').attr("style","display: none;");
+                $('#tablink1').removeAttr("class");
+                $('#tablink2').attr("class","active");
+    </c:if>
+            // Example Overlay form
+            $(".on_load").live('click',function(){	
+                $('body').append('<div id="overlay"></div>');
+                $('#overlay').css('opacity',0.4).fadeIn(400);
+                var activeLoad = $(this).attr("name");		
+                var titleTabs = $(this).attr("title");		
+                $("ul.tabs li").hide();		
+                $('ul.tabs li').each(function(index) {
+                    var activeTab = $('ul.tabs li:eq('+index+')').find("a").attr("href");			
+                    if(activeTab==activeLoad){
+                        $("ul.tabs ").append('<li class=active><a href="'+activeLoad+'" class=" prev on_prev "  id="on_prev_pro" name="'+activeLoad+'" >'+titleTabs+'</a></li>');
+                        $("ul.tabs li:last").fadeIn();	
+                    }
+                });
+                $('.widget-content').css({'position':'relative','z-index':'1001'});
+                $(".load_page").hide();
+                $('.show_add').show();
             });
-            $('.widget-content').css({'position':'relative','z-index':'1001'});
-            $(".load_page").hide();
-            $('.show_add').show();
-        });
 			  
-        $(".on_prev").live('click',function(){	 
-            $("ul.tabs li:last").remove();					 
-            $("ul.tabs li").fadeIn();
-            var pageLoad = $(this).attr("rel");	
-            var activeLoad = $(this).attr("name");		
-            $(".show_add, .show_edit").hide();		
-            $(".show_edit").html('').hide();		
-            $(activeLoad).fadeIn();	
-            $(' .load_page').fadeIn(400,function(){   
-                $('#overlay').fadeOut(function(){
-                    $('.widget-content').delay(500).css({'z-index':'','box-shadow':'','-moz-box-shadow':'','-webkit-box-shadow':''});
+            $(".on_prev").live('click',function(){	 
+                $("ul.tabs li:last").remove();					 
+                $("ul.tabs li").fadeIn();
+                var pageLoad = $(this).attr("rel");	
+                var activeLoad = $(this).attr("name");		
+                $(".show_add, .show_edit").hide();		
+                $(".show_edit").html('').hide();		
+                $(activeLoad).fadeIn();	
+                $(' .load_page').fadeIn(400,function(){   
+                    $('#overlay').fadeOut(function(){
+                        $('.widget-content').delay(500).css({'z-index':'','box-shadow':'','-moz-box-shadow':'','-webkit-box-shadow':''});
+                    }); 
                 }); 
-            }); 
-            ResetForm();
-        });	
-    });
+                ResetForm();
+            });	
+        });
 </script>
 
 
-<
+
 <script>
     jQuery(document).ready(function() {
         // Drag & Drop  Delete images 
@@ -288,97 +291,103 @@
     });
 
     var Count=0;
-    function AddCart(name){
-        flag=0;
-        T_GrossAll=parseFloat($('#T_GrossAll').text());
-        T_TaxAll=parseFloat($('#T_TaxAll').text());
-        t_AmountAll=parseFloat($('#T_AmountAll').text());
-        $('#ItemList').find('#ProductID').each(function(){
-            if($(this).val()==name.imgdata(0)){
-                path=$(this).parent().parent();
+    <c:if test="${Trade.getTotal()>0 }">
+        <c:forEach items="${TradeDetail}" var="s">  
+            $("#ItemList").append("<tr id='TRProduct"+Count+"'><td id='TDProduct'>${s.getItemName()}<input type='hidden' id='ProductID' name='mygrid' value='${s.getItemID()}'/></td>         <td id='TDProductQty'><input type='text' id='ProductQty' class='small' onchange='updateQty(\"TRProduct"+Count+"\");' name='mygrid' value='${s.getQty()}'/></td>     <td id='TDProductRate'>${s.getRate()}</td>         <td id='TDGrossTotal'>${s.getTGross()}</td>          <td id='TDProductTax'>${s.getTaxPer()}</td>       <td id='TDTotal'>${s.getTotal()}</td>            <td id='TDAction'><img src='images/core/fancy_close.png' id='"+Count+"' onclick='RemoveItem(\"TRProduct"+Count+"\");' /></td></tr>");
+            Count++;   
+        </c:forEach>
+    </c:if>
+        function AddCart(name){
+            flag=0;
+            T_GrossAll=parseFloat($('#T_GrossAll').text());
+            T_TaxAll=parseFloat($('#T_TaxAll').text());
+            t_AmountAll=parseFloat($('#T_AmountAll').text());
+            $('#ItemList').find('#ProductID').each(function(){
+                if($(this).val()==name.imgdata(0)){
+                    path=$(this).parent().parent();
 			
-                path.find('#ProductQty').attr("value",parseFloat(path.find('#ProductQty').val())+1);
+                    path.find('#ProductQty').attr("value",parseFloat(path.find('#ProductQty').val())+1);
 			
-                G_Total=parseFloat(path.find('#ProductQty').val())*parseFloat(path.find('#ProductRate').val());
-                T_GrossAll=parseFloat($('#T_GrossAll').text())-parseFloat(path.find('#TDGrossTotal').text())+G_Total;
-                path.find('#TDGrossTotal').html(G_Total+"<input type='hidden' name='mygrid' id='GrossTotal' value='"+G_Total+"'/>");
+                    G_Total=parseFloat(path.find('#ProductQty').val())*parseFloat(path.find('#TDProductRate').text());
+                    T_GrossAll=parseFloat($('#T_GrossAll').text())-parseFloat(path.find('#TDGrossTotal').text())+G_Total;
+                    path.find('#TDGrossTotal').html(G_Total);
 			
-                Tax=parseFloat(path.find('#TDProductTax').text());
+                    Tax=parseFloat(path.find('#TDProductTax').text());
+                    T_Tax=(G_Total*Tax)/100;
+                    T_TaxAll=parseFloat($('#T_TaxAll').text())-parseFloat(path.find('#TDProductTax').text())+T_Tax;
+                    path.find('#TDProductTax').html(Tax);
+			
+                    Total=G_Total+T_Tax;
+                    t_AmountAll=parseFloat($('#T_AmountAll').text())-parseFloat(path.find('#TDTotal').text())+Total;
+                    path.find('#TDTotal').html(Total);
+                    flag=1;
+                }
+            });
+            if(flag==0){
+                Qty=1;
+                Rate=name.imgdata(2);
+                Tax=name.imgdata(3);
+                G_Total=Qty*Rate;
                 T_Tax=(G_Total*Tax)/100;
-                T_TaxAll=parseFloat($('#T_TaxAll').text())-parseFloat(path.find('#ProductTax').val())+T_Tax;
-                path.find('#TDProductTax').html(Tax+"<input type='hidden' name='mygrid' id='ProductTax' value='"+T_Tax+"'/>");
-			
                 Total=G_Total+T_Tax;
-                t_AmountAll=parseFloat($('#T_AmountAll').text())-parseFloat(path.find('#TDTotal').text())+Total;
-                path.find('#TDTotal').html(Total+"<input type='hidden' id='Total' name='mygrid' value='"+Total+"'/>");
-                flag=1;
+                T_GrossAll=parseFloat($('#T_GrossAll').text())+G_Total;
+                T_TaxAll=parseFloat($('#T_TaxAll').text())+T_Tax;
+                t_AmountAll=parseFloat($('#T_AmountAll').text())+Total;
+                $("#ItemList").append("<tr id='TRProduct"+Count+"'><td id='TDProduct'>"+ name.imgdata(1) +"<input type='hidden' id='ProductID' name='mygrid' value='" + name.imgdata(0) + "'/></td>         <td id='TDProductQty'><input type='text' id='ProductQty' class='small' onchange='updateQty(\"TRProduct"+Count+"\");' name='mygrid' value='"+Qty+"'/></td>     <td id='TDProductRate'>"+Rate+"</td>         <td id='TDGrossTotal'>"+G_Total+"</td>          <td id='TDProductTax'>"+Tax+"</td>       <td id='TDTotal'>"+Total+"</td>            <td id='TDAction'><img src='images/core/fancy_close.png' id='"+Count+"' onclick='RemoveItem(\"TRProduct"+Count+"\");' /></td></tr>");
+                Count+=1;
             }
-        });
-        if(flag==0){
-            Qty=1;
-            Rate=name.imgdata(2);
-            Tax=name.imgdata(3);
-            G_Total=Qty*Rate;
-            T_Tax=(G_Total*Tax)/100;
-            Total=G_Total+T_Tax;
-            T_GrossAll=parseFloat($('#T_GrossAll').text())+G_Total;
-            T_TaxAll=parseFloat($('#T_TaxAll').text())+T_Tax;
-            t_AmountAll=parseFloat($('#T_AmountAll').text())+Total;
-            $("#ItemList").append("<tr id='TRProduct"+Count+"'><td id='TDProduct'>"+ name.imgdata(1) +"<input type='hidden' id='ProductID' name='mygrid' value='" + name.imgdata(0) + "'/></td>         <td id='TDProductQty'><input type='text' id='ProductQty' class='small' onchange='updateQty(\"TRProduct"+Count+"\");' name='mygrid' value='"+Qty+"'/></td>     <td id='TDProductRate'>"+Rate+"<input type='hidden' name='mygrid' id='ProductRate' value='"+Rate+"'/></td>         <td id='TDGrossTotal'>"+G_Total+"<input type='hidden' name='mygrid' id='GrossTotal' value='"+G_Total+"'/></td>          <td id='TDProductTax'>"+Tax+"<input type='hidden' name='mygrid' id='ProductTax' value='"+T_Tax+"'/></td>       <td id='TDTotal'>"+Total+"<input type='hidden' id='Total' name='mygrid' value='"+Total+"'/></td>            <td id='TDAction'><img src='images/core/fancy_close.png' id='"+Count+"' onclick='RemoveItem(\"TRProduct"+Count+"\");' /></td></tr>");
-            Count+=1;
+        
+            $('#T_GrossAll').html(T_GrossAll);
+            $('#T_TaxAll').html(T_TaxAll);
+            $('#T_AmountAll').html(t_AmountAll);
         }
-        
-        $('#T_GrossAll').html(T_GrossAll+"<input type='hidden' name='T_GrossAll' value='"+T_GrossAll+"'/>");
-        $('#T_TaxAll').html(T_TaxAll+"<input type='hidden' name='T_TaxAll' value='"+T_TaxAll+"'/>");
-        $('#T_AmountAll').html(t_AmountAll+"<input type='hidden' name='T_AmountAll' value='"+t_AmountAll+"'/>");
-    }
 
-    function updateQty(ProductQty){
-        path=$('#'+ProductQty);
+        function updateQty(ProductQty){
+            path=$('#'+ProductQty);
 	
-        path.find('#ProductQty').attr("value",parseFloat(path.find('#ProductQty').val()));
+            path.find('#ProductQty').attr("value",parseFloat(path.find('#ProductQty').val()));
 		
-        G_Total=parseFloat(path.find('#ProductQty').val())*parseFloat(path.find('#ProductRate').val());
-        T_GrossAll=parseFloat($('#T_GrossAll').text())-parseFloat(path.find('#TDGrossTotal').text())+G_Total;
-        path.find('#TDGrossTotal').html(G_Total+"<input type='hidden' name='mygrid' id='GrossTotal' value='"+G_Total+"'/>");
+            G_Total=parseFloat(path.find('#ProductQty').val())*parseFloat(path.find('#TDProductRate').text());
+            T_GrossAll=parseFloat($('#T_GrossAll').text())-parseFloat(path.find('#TDGrossTotal').text())+G_Total;
+            path.find('#TDGrossTotal').html(G_Total);
 	
-        Tax=parseFloat(path.find('#TDProductTax').text());
-        T_Tax=(G_Total*Tax)/100;
-        T_TaxAll=parseFloat($('#T_TaxAll').text())-parseFloat(path.find('#ProductTax').val())+T_Tax;
-        path.find('#TDProductTax').html(Tax+"<input type='hidden' name='mygrid' id='ProductTax' value='"+T_Tax+"'/>");
+            Tax=parseFloat(path.find('#TDProductTax').text());
+            T_Tax=(G_Total*Tax)/100;
+            T_TaxAll=parseFloat($('#T_TaxAll').text())-parseFloat(path.find('#TDProductTax').text())+T_Tax;
+            path.find('#TDProductTax').html(Tax);
 	
-        Total=G_Total+T_Tax;
-        t_AmountAll=parseFloat($('#T_AmountAll').text())-parseFloat(path.find('#TDTotal').text())+Total;
-        path.find('#TDTotal').html(Total+"<input type='hidden' id='Total' name='mygrid' value='"+Total+"'/>");
+            Total=G_Total+T_Tax;
+            t_AmountAll=parseFloat($('#T_AmountAll').text())-parseFloat(path.find('#TDTotal').text())+Total;
+            path.find('#TDTotal').html(Total);
         
-        $('#T_GrossAll').html(T_GrossAll+"<input type='hidden' name='T_GrossAll' value='"+T_GrossAll+"'/>");
-        $('#T_TaxAll').html(T_TaxAll+"<input type='hidden' name='T_TaxAll' value='"+T_TaxAll+"'/>");
-        $('#T_AmountAll').html(t_AmountAll+"<input type='hidden' name='T_AmountAll' value='"+t_AmountAll+"'/>");
+            $('#T_GrossAll').html(T_GrossAll);
+            $('#T_TaxAll').html(T_TaxAll);
+            $('#T_AmountAll').html(t_AmountAll);
 
-    }
+        }
 
-    function RemoveItem(ProductQty){
-        path=$('#'+ProductQty);
-        T_GrossAll=parseFloat($('#T_GrossAll').text())-parseFloat(path.find('#TDGrossTotal').text());
-        T_TaxAll=parseFloat($('#T_TaxAll').text())-parseFloat(path.find('#ProductTax').val());
-        t_AmountAll=parseFloat($('#T_AmountAll').text())-parseFloat(path.find('#TDTotal').text());
+        function RemoveItem(ProductQty){
+            path=$('#'+ProductQty);
+            T_GrossAll=parseFloat($('#T_GrossAll').text())-parseFloat(path.find('#TDGrossTotal').text());
+            T_TaxAll=parseFloat($('#T_TaxAll').text())-parseFloat(path.find('#ProductTax').val());
+            t_AmountAll=parseFloat($('#T_AmountAll').text())-parseFloat(path.find('#TDTotal').text());
         
-        $('#T_GrossAll').html(T_GrossAll+"<input type='hidden' name='T_GrossAll' value='"+T_GrossAll+"'/>");
-        $('#T_TaxAll').html(T_TaxAll+"<input type='hidden' name='T_TaxAll' value='"+T_TaxAll+"'/>");
-        $('#T_AmountAll').html(t_AmountAll+"<input type='hidden' name='T_AmountAll' value='"+t_AmountAll+"'/>");
-        $('#'+ProductQty).remove();
-    }
+            $('#T_GrossAll').html(T_GrossAll);
+            $('#T_TaxAll').html(T_TaxAll);
+            $('#T_AmountAll').html(t_AmountAll);
+            $('#'+ProductQty).remove();
+        }
     
-    //Getting All Product
-    $.ajax({url:"Controller?Action=CallAjax&SubAction=GetProduct&id="+$('#Categories').val(),success:function(result){
+        //Getting All Product
+        $.ajax({url:"Controller?Action=CallAjax&SubAction=GetProduct&id="+$('#Categories').val(),success:function(result){
                 $(".ProductList").html(result);
             }}); 
-    $('#Categories').change( function() {
-        $.ajax({url:"Controller?Action=CallAjax&SubAction=GetProduct&id="+$(this).val(),success:function(result){
-                $(".ProductList").html(result);
-            }});
-    });
+        $('#Categories').change( function() {
+            $.ajax({url:"Controller?Action=CallAjax&SubAction=GetProduct&id="+$(this).val(),success:function(result){
+                    $(".ProductList").html(result);
+                }});
+        });
     
    
-    //$(".CartZone").append('<img src="'+name.find('img').attr("src")+'" title="Drag Image to delete" />');
+        //$(".CartZone").append('<img src="'+name.find('img').attr("src")+'" title="Drag Image to delete" />');
 </script>

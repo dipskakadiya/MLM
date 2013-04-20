@@ -17,6 +17,13 @@ public class Trade {
     private Integer Discount;
     private Integer Total;
 
+    public Trade() {
+        T_gross=0;
+        T_tax=0;
+        Discount=0;
+        Total=0;
+    }
+    
     public Integer getOrder_id() {
         return order_id;
     }

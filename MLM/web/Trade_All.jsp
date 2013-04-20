@@ -63,6 +63,7 @@
                                             <th>T_Tax</th>
                                             <th>Discount</th>
                                             <th>Total</th>
+                                            <th>Action</th>
                                             </tr>
                                             </thead>
                                             <tbody align="center">
@@ -75,6 +76,10 @@
                                                 <td>${s.getT_tax()}</td>
                                                 <td>${s.getDiscount()}</td>
                                                 <td>${s.getTotal()}</td>
+                                                <td>
+                                                          <span class="tip"><a original-title="Edit" href="Controller?Action=ShowTrade&uid=${s.getOrder_id()}"><img src="images/icon/icon_edit.png"></a></span> 
+                                                          <span class="tip"><a href="" class="Delete" name="delete name" title="Delete"><img src="images/icon/icon_delete.png"></a></span> 
+                                                </td>
                                             </tr>
                                         </c:forEach>
 
