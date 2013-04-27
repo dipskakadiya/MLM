@@ -45,11 +45,10 @@ public class Controller extends HttpServlet {
             Action action = (Action) ObjectCreator.createObject(action_class);  
             request.setAttribute("cur_user",1);
             String view = action.execute(request, response);
-
-           RequestDispatcher rd = request.getRequestDispatcher(view);
-           rd.forward(request, response);    
-
-           
+            if(view!=null){
+                RequestDispatcher rd = request.getRequestDispatcher(view);
+                rd.forward(request, response);    
+            }
         } finally {            
             out.close();
         }

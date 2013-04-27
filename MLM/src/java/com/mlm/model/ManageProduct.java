@@ -6,6 +6,9 @@ package com.mlm.model;
 
 import com.mlm.action.Action;
 import com.mlm.bean.Product;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -17,6 +20,7 @@ public class ManageProduct implements Action{
 
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse res) {
+        try {
             Product Pr=new Product();
             Pr.setItemid(Integer.parseInt(req.getParameter("item_code")));
             Pr.setItemname(req.getParameter("item_name"));
@@ -30,7 +34,10 @@ public class ManageProduct implements Action{
             }else{        
                 Pr.Insert();
             }
-        return "Controller?Action=ShowProduct";
+            res.sendRedirect("Controller?Action=ShowProduct");
+        } catch (IOException ex) {
+            ex.getMessage();
+        }
+        return null;
     }
-    
 }

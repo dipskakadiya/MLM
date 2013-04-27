@@ -6,6 +6,7 @@ package com.mlm.model;
 
 import com.mlm.action.Action;
 import com.mlm.bean.Product;
+import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -17,10 +18,15 @@ public class DeleteProduct implements Action{
 
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse res) {
-        Product Pr=new Product();
-            Pr.setItemid(Integer.parseInt(req.getParameter("did")));
-            Pr.delete();
-            return "Controller?Action=ShowProduct";
+        try {
+            Product Pr=new Product();
+                Pr.setItemid(Integer.parseInt(req.getParameter("did")));
+                Pr.delete();
+                res.sendRedirect("Controller?Action=ShowProduct");
+        } catch (IOException ex) {
+            ex.getMessage();
+        }
+        return null;
     }
     
 }
