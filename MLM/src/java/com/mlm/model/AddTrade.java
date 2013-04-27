@@ -33,14 +33,14 @@ public class AddTrade implements Action {
         String[] grid = req.getParameterValues("mygrid");
         try {
             // New Trade
-            db.queryiu("insert into tbl_order values (" + req.getParameter("orderid") + "," + req.getAttribute("cur_user") + ",sysdate,0,0,0,0)");
+            db.queryi("insert into tbl_order values (" + req.getParameter("orderid") + "," + req.getAttribute("cur_user") + ",sysdate,0,0,0,0)");
             for (int i = 0; i < grid.length; i = i + 2) {
                 rsItem = db.querys("select * from TBL_ITEM where ITEM_ID=" + grid[i]);
                 rsItem.next();
                 Gross=Integer.parseInt(grid[i+1])* rsItem.getInt("RATE");
                 Tax=Gross*0/100;
                 Total=Gross+Tax;
-                 db.queryiu("insert into order_detail values (" + req.getParameter("orderid") + "," + grid[i] + "," + grid[i + 1] + "," + rsItem.getInt("RATE") + "," + Gross + "," + Tax + "," + Total + ")");
+                 db.queryi("insert into order_detail values (" + req.getParameter("orderid") + "," + grid[i] + "," + grid[i + 1] + "," + rsItem.getInt("RATE") + "," + Gross + "," + Tax + "," + Total + ")");
                 TGross+=Gross;
                 Ttax+=Tax;
                 Amount+=Total;                
@@ -50,7 +50,7 @@ public class AddTrade implements Action {
                Disc=Amount*rs.getInt("RATE")/100; 
             }
             Amount-=Disc;
-            db.queryiu("update tbl_order set T_GROSS="+TGross+",T_TAX="+Ttax+",DISCOUNT="+Disc+",TOTAL="+Amount+" where ORDER_ID="+req.getParameter("orderid"));
+            db.queryi("update tbl_order set T_GROSS="+TGross+",T_TAX="+Ttax+",DISCOUNT="+Disc+",TOTAL="+Amount+" where ORDER_ID="+req.getParameter("orderid"));
                 
             //Edit Trade
             

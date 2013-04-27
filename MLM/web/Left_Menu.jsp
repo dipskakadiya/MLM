@@ -9,9 +9,9 @@
 				<li><a href="Controller?Action=ShowMemeberChain">Mem. Chart</a></li>
 				<li><a href="ApproveMember.jsp">Approve Mem.</a></li>
 			</ul></li>
-		<li><a href="Product.jsp"><span class="ico gray  dimensions"></span><b>Product</b></a>
+		<li><a href="Controller?Action=ShowProduct"><span class="ico gray  dimensions"></span><b>Product</b></a>
 			<ul>
-				<li><a href="Product.jsp">Product</a></li>
+				<li><a href="Controller?Action=ShowProduct">Product</a></li>
 				<li><a href="Category.jsp"> Category </a></li>
 			</ul></li>
 		<li><a href="Controller?Action=ShowTrade"><span

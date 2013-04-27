@@ -32,10 +32,21 @@ public class DBConnection {
         public String geterror(){
 		return error;
 	}
-	public void queryiu(String sql){
+	public void queryi(String sql){
 		try {
                         st = con.createStatement();
 			st.execute(sql);                      
+			//error=null;
+		}catch (Exception e) {
+			// TODO Auto-generated catch block
+			error=e.toString();
+			System.out.println("erreor"+e.getLocalizedMessage());
+		}
+	}
+        public void queryud(String sql){
+		try {
+                        st = con.createStatement();
+			st.executeUpdate(sql);                      
 			//error=null;
 		}catch (Exception e) {
 			// TODO Auto-generated catch block

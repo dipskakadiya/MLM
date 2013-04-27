@@ -4,6 +4,8 @@
  */
 package com.mlm.bean;
 
+import com.mlm.dbutility.DBConnection;
+
 
 /**
  *
@@ -13,11 +15,24 @@ public class Product {
     private Integer itemid;
     private String itemname;
     private Integer ctgid;
+    private String ctgname;
     private Integer stock;
     private Integer rate;
     private Integer prelevel;
     private Integer tax;
     private String img;
+    private DBConnection db;
+    public Product() {
+         db = new DBConnection();
+    }
+    
+    public String getCtgname() {
+        return ctgname;
+    }
+
+    public void setCtgname(String ctgname) {
+        this.ctgname = ctgname;
+    }
 
     public Integer getItemid() {
         return itemid;
@@ -82,5 +97,19 @@ public class Product {
     public void setImg(String img) {
         this.img = img;
     }
-
+    
+    
+    //Insert
+    public void Insert(){
+        db.queryi("insert into TBL_ITEM values("+itemid+",'"+itemname+"',"+ctgid+","+stock+","+rate+","+prelevel+",'"+img+"')");
+    }
+    
+    //Update 
+    public void Update(){
+        db.queryud("update TBL_ITEM set ITEM_NAME='"+itemname+"',CTG_ID="+ctgid+",STOCK="+stock+",RATE="+rate+",PREORDER_LEVEL="+prelevel+",IMAGE='"+img+"' where ITEM_ID="+itemid);
+    }
+    //Delete
+    public void delete(){
+        db.queryud("delete from TBL_ITEM where ITEM_ID="+itemid);
+    }
 }
