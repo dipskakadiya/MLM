@@ -23,7 +23,7 @@ public class DeleteProduct implements Action{
                 Pr.setItemid(Integer.parseInt(req.getParameter("did")));
                 Pr.delete();
                 res.sendRedirect("Controller?Action=ShowProduct");
-        } catch (IOException ex) {
+        } catch (Exception ex) {
             ex.getMessage();
         }
         return null;

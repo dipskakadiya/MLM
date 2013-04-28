@@ -83,7 +83,9 @@
                                             </div>        
                                             <form id="validation_demo" method="post" action="Controller"> 
                                                 <input type="hidden" name="Action" id="Action" value="SaveProduct" class="validate[required] medium" />        
-                                                <input type="hidden" name="SubAction" id="SubAction" value="<%if(request.getParameter("uid")!=null){ out.print("Update");}%>" class="validate[required] medium" />        
+                                                <input type="hidden" name="SubAction" id="SubAction" value="<%if (request.getParameter("uid") != null) {
+                                                        out.print("Update");
+                                                    }%>" class="validate[required] medium" />        
                                                 <div class="section ">
                                                     <label> Item Code</label>   
                                                     <div> 
@@ -109,7 +111,7 @@
                                                 </div>
 
                                                 <div class="section">
-                                                    <div class="avartar"><img src="${s.getImg()}" width="180" height="180" alt="Product Image" /></div>
+                                                    <div class="avartar"><img src="${Product.getImg()}" width="180" height="180" alt="Product Image" /></div>
                                                     <br>  <div class="avartar">
                                                         <input type="file" name="ProductImage" id="ProductImage" class="fileupload" />
                                                     </div>

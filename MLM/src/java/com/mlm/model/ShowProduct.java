@@ -9,10 +9,7 @@ import com.mlm.bean.Categories;
 import com.mlm.bean.Product;
 import com.mlm.dbutility.DBConnection;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -33,7 +30,7 @@ public class ShowProduct implements Action {
         ArrayList<Categories> Cat_All = null;
         ArrayList<Product> Product_All = null;
         Product Pr = null;
-        Integer Order_id = null;
+        Integer Product_id = null;
         try {
             //Get All Categories
             ResultSet Rs_Cat = db.querys("select * from TBL_CTG order by CTG_NAME");
@@ -62,20 +59,19 @@ public class ShowProduct implements Action {
 
             }
             if (req.getParameter("uid") != null) {
-                //Get Trade info for Update
+                //Get Product info for Update
                 for(int i=0;i<Product_All.size();i++){
                     if(Product_All.get(i).getItemid()==Integer.parseInt(req.getParameter("uid"))){
-                        Pr = new Product();
                         Pr=Product_All.get(i);
                     }
                 }
             } else {
-                //Get Orderid for new Trade
-                Order_id = db.queryint("select max(ITEM_ID)+1 from TBL_ITEM");
+                //Get Productid for new Product
+                Product_id = db.queryint("select max(ITEM_ID)+1 from TBL_ITEM");
                 Pr = new Product();
-                Pr.setItemid(Order_id);
+                Pr.setItemid(Product_id);
             }
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             ex.getMessage();
         }
         req.setAttribute("Product", Pr);

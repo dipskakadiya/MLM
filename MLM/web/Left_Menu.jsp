@@ -2,10 +2,10 @@
 	<ul id="main_menu" class="main_menu">
 		<li class="select"><a href="Dashboard.jsp"><span
 				class="ico gray shadow home"></span><b>Dashboard</b></a></li>
-		<li><a href="Member.jsp"><span
+		<li><a href="Controller?Action=ShowMemeber"><span
 				class="ico gray shadow window"></span><b>Member</b></a>
 			<ul>
-				<li><a href="Member.jsp">Manage Mem.</a></li>
+				<li><a href="Controller?Action=ShowMemeber">Manage Mem.</a></li>
 				<li><a href="Controller?Action=ShowMemeberChain">Mem. Chart</a></li>
 				<li><a href="ApproveMember.jsp">Approve Mem.</a></li>
 			</ul></li>

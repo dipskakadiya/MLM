@@ -4,7 +4,8 @@
  */
 package com.mlm.bean;
 
-import java.util.Date;
+import com.mlm.dbutility.DBConnection;
+
 
 
 /**
@@ -12,19 +13,40 @@ import java.util.Date;
  * @author sai
  */
 public class Member {
+    private Integer memid;
+    private Integer Parent_ID;
     private String username;
     private String email;
     private String mobile;
     private String Firstname;
     private String lastname;
-    private boolean optgender;
-    private Date birthdate;
+    private String optgender;
+    private String birthdate;
     private String address;
-    private Integer country;
-    private Integer state;
-    private Integer city ;
+    private String country;
+    private String state;
+    private String city ;
     private Integer pincode;
-    //image;
+    private String image;
+    private DBConnection db;
+
+    public Integer getParent_ID() {
+        return Parent_ID;
+    }
+
+    public void setParent_ID(Integer Parent_ID) {
+        this.Parent_ID = Parent_ID;
+    }
+    public Member() {
+         db = new DBConnection();
+    }
+    public Integer getMemid() {
+        return memid;
+    }
+
+    public void setMemid(Integer memid) {
+        this.memid = memid;
+    }
 
     public String getUsername() {
         return username;
@@ -66,19 +88,19 @@ public class Member {
         this.lastname = lastname;
     }
 
-    public boolean isOptgender() {
+    public String isOptgender() {
         return optgender;
     }
 
-    public void setOptgender(boolean optgender) {
+    public void setOptgender(String optgender) {
         this.optgender = optgender;
     }
 
-    public Date getBirthdate() {
+    public String getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(Date birthdate) {
+    public void setBirthdate(String birthdate) {
         this.birthdate = birthdate;
     }
 
@@ -90,27 +112,27 @@ public class Member {
         this.address = address;
     }
 
-    public Integer getCountry() {
+    public String getCountry() {
         return country;
     }
 
-    public void setCountry(Integer country) {
+    public void setCountry(String country) {
         this.country = country;
     }
 
-    public Integer getState() {
+    public String getState() {
         return state;
     }
 
-    public void setState(Integer state) {
+    public void setState(String state) {
         this.state = state;
     }
 
-    public Integer getCity() {
+    public String getCity() {
         return city;
     }
 
-    public void setCity(Integer city) {
+    public void setCity(String city) {
         this.city = city;
     }
 
@@ -121,6 +143,29 @@ public class Member {
     public void setPincode(Integer pincode) {
         this.pincode = pincode;
     }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
     
+    //Insert
+    public void Insert(){
+        db.queryi("insert into TBL_MEMBER values("+memid+",'"+username+"','"+memid+"@"+username+"@"+memid+"','Client',0)");
+        db.queryi("insert into MEMBER_DETAIL values("+memid+",'"+Firstname+"','"+lastname+"','"+optgender+"','1-mar-1992','"+address+"',"+city+","+state+","+country+","+pincode+","+mobile+",'"+email+"','"+image+"')");
+        int step=db.queryint("select max(STEP)+1 from MEMBER_CHAIN where CHILD="+Parent_ID);
+        db.queryi("insert into MEMBER_CHAIN values("+Parent_ID+","+memid+","+step+")");
+    }
     
+    //Update 
+    public void Update(){
+        db.queryud("");
+    }
+    //Delete
+    public void delete(){
+        db.queryud("");
+    }
 }

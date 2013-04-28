@@ -35,7 +35,7 @@ public class ManageProduct implements Action{
                 Pr.Insert();
             }
             res.sendRedirect("Controller?Action=ShowProduct");
-        } catch (IOException ex) {
+        } catch (Exception ex) {
             ex.getMessage();
         }
         return null;
