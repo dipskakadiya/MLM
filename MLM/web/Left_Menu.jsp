@@ -15,10 +15,10 @@
 				<li><a href="Category.jsp"> Category </a></li>
 			</ul></li>
 		<li><a href="Controller?Action=ShowTrade"><span
-				class="ico gray shadow   encrypt"></span><b>Trade</b> </a>
+				class="ico gray shadow   encrypt"></span><b>Order</b> </a>
 			<ul>
-				<li><a href="Controller?Action=ShowTrade"> Trade </a></li>
-				<li><a href="Controller?Action=ViewTrade">View Trade</a></li>
+				<li><a href="Controller?Action=ShowTrade"> Order </a></li>
+				<li><a href="Controller?Action=ViewTrade">View Order</a></li>
 			</ul></li>
 		<li><a href="Payment.jsp"><span
 				class="ico gray shadow  spreadsheet"></span><b>Payment</b> </a></li>

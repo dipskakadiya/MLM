@@ -5,7 +5,7 @@
 package com.mlm.model;
 
 import com.mlm.action.Action;
-import com.mlm.bean.Trade;
+import com.mlm.bean.Order;
 import com.mlm.dbutility.DBConnection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -29,10 +29,10 @@ public class ViewTrade  implements Action{
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse res) {
         ResultSet rs=db.querys("select * from tbl_order order by order_id");
-        ArrayList<Trade> Tr_All=new ArrayList<Trade>();
+        ArrayList<Order> Tr_All=new ArrayList<Order>();
         try {
             while(rs.next()){
-                Trade tr=new Trade();
+                Order tr=new Order();
                 tr.setOrder_id(rs.getInt("ORDER_ID"));
                 tr.setMem_id(rs.getInt("MEM_ID"));
                 tr.setOrder_date(rs.getString("ORDER_DATE"));
@@ -46,7 +46,7 @@ public class ViewTrade  implements Action{
             Logger.getLogger(ViewTrade.class.getName()).log(Level.SEVERE, null, ex);
         }
         req.setAttribute("Trade", Tr_All);
-        return "Trade_All.jsp";
+        return "Order_All.jsp";
     }
     
     

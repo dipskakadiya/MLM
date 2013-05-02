@@ -6,8 +6,8 @@ package com.mlm.model;
 
 import com.mlm.action.Action;
 import com.mlm.bean.Categories;
-import com.mlm.bean.Trade;
-import com.mlm.bean.TradeDetail;
+import com.mlm.bean.Order;
+import com.mlm.bean.OrderDetail;
 import com.mlm.dbutility.DBConnection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -32,10 +32,10 @@ public class ShowTrade implements Action {
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse res) {
         ArrayList<Categories> Cat_All=null;
-        ArrayList<TradeDetail> TRD_All=null;
+        ArrayList<OrderDetail> TRD_All=null;
         Integer Order_id= null;
-        Trade tr=null;
-        TradeDetail TrD=null;
+        Order tr=null;
+        OrderDetail TrD=null;
         try {
             //Get All Categories
             ResultSet rs = db.querys("select * from TBL_CTG order by CTG_NAME");
@@ -47,10 +47,10 @@ public class ShowTrade implements Action {
                 Cat_All.add(ct);
             }
             if (req.getParameter("uid") != null) {
-                //Get Trade info for Update
+                //Get Order info for Update
                 ResultSet Rs_Tr_order = db.querys("select * from TBL_ORDER where ORDER_ID=" + req.getParameter("uid"));
                 while(Rs_Tr_order.next()){
-                    tr=new Trade();
+                    tr=new Order();
                     tr.setOrder_id(Rs_Tr_order.getInt("ORDER_ID"));
                     tr.setMem_id(Rs_Tr_order.getInt("MEM_ID"));
                     tr.setOrder_date(Rs_Tr_order.getString("ORDER_DATE"));
@@ -60,10 +60,10 @@ public class ShowTrade implements Action {
                     tr.setTotal(Rs_Tr_order.getInt("TOTAL"));
                 }
                 //Get Order Detail
-                TRD_All=new ArrayList<TradeDetail>();
-                ResultSet Rs_order_detail = db.querys("select * from ORDER_DETAIL where ORDER_ID=" + req.getParameter("uid"));
+                TRD_All=new ArrayList<OrderDetail>();
+                ResultSet Rs_order_detail = db.querys("select * from ORDER_DETAIL OD where ORDER_ID=" + req.getParameter("uid"));
                 while(Rs_order_detail.next()){
-                    TrD=new TradeDetail();
+                    TrD=new OrderDetail();
                     TrD.setOrderId(Rs_order_detail.getInt("ORDER_ID"));
                     TrD.setItemID(Rs_order_detail.getInt("ITEM_ID"));
                     TrD.setItemName("Dips");
@@ -76,9 +76,9 @@ public class ShowTrade implements Action {
                     TRD_All.add(TrD);
                 }
             }else{
-                //Get Orderid for new Trade
+                //Get Orderid for new Order
                 Order_id= db.queryint("select max(ORDER_ID)+1 from TBL_ORDER");
-                tr=new Trade();
+                tr=new Order();
                 tr.setOrder_id(Order_id);
             }
         } catch (SQLException ex) {
@@ -87,6 +87,6 @@ public class ShowTrade implements Action {
         req.setAttribute("Trade", tr);
         req.setAttribute("TradeDetail", TRD_All);
         req.setAttribute("Categories", Cat_All);
-        return "Trade.jsp";
+        return "Order.jsp";
     }
 }

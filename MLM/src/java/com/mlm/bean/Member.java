@@ -5,6 +5,7 @@
 package com.mlm.bean;
 
 import com.mlm.dbutility.DBConnection;
+import java.text.SimpleDateFormat;
 
 
 
@@ -162,10 +163,13 @@ public class Member {
     
     //Update 
     public void Update(){
-        db.queryud("");
+            db.queryud("update TBL_MEMBER set USERNAME='"+username+"' where MEM_ID="+memid);
+            db.queryud("update MEMBER_DETAIL set FNAME='"+Firstname+"',LNAME='"+lastname+"',Gender='"+optgender+"', R_ADDRESS='"+address+"' ,CITY_ID="+city+",STATE_ID="+state+",COUNTRY_ID="+country+",PINCODE="+pincode+",MOBILENO="+mobile+",EMAIL='"+email+"',IMAGE='"+image+"' where MEM_ID="+memid);
     }
     //Delete
     public void delete(){
-        db.queryud("");
+            System.out.println("In delete");
+            db.queryud("delete from MEMBER_DETAIL where MEM_ID="+memid);
+            db.queryud("delete from TBL_MEMBER where MEM_ID="+memid);
     }
 }

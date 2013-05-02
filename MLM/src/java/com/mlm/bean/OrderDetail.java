@@ -11,7 +11,7 @@ import java.sql.ResultSet;
  *
  * @author sai
  */
-public class TradeDetail {
+public class OrderDetail {
 
     private Integer OrderId;
     private Integer ItemID;
@@ -100,7 +100,8 @@ public class TradeDetail {
         try {
             ResultSet rsItem = db.querys("select TI.RATE,(select sum(CT.TAX) from CTG_TAX CT where CT.CTG_ID=TI.CTG_ID) as Tax from TBL_ITEM TI where TI.ITEM_ID=" + ItemID);
             rsItem.next();
-            TGross = Qty * rsItem.getInt("RATE");
+            Rate=rsItem.getInt("RATE");
+            TGross = Qty * Rate;
             Tax = TGross * rsItem.getInt("Tax") / 100;
             Total = TGross + Tax;
             db.queryi("insert into order_detail values (" + OrderId + "," + ItemID + "," + Qty + "," + Rate + "," + TGross + "," + Tax + "," + Total + ")");
@@ -110,12 +111,14 @@ public class TradeDetail {
     }
 
     //Update 
-    public void Update(DBConnection db) {
-        db.queryud("");
-    }
+   /* public void Update(DBConnection db) {
+       Insert(db);
+       delete(db);
+    }*/
     //Delete
 
-    public void delete(DBConnection db) {
-        db.queryud("");
-    }
+    public void delete(DBConnection db,Integer Oid) {
+        System.out.println("delete from order_detail where order_detail="+Oid);
+        db.queryud("delete from order_detail where ORDER_ID="+Oid);
+    }        
 }

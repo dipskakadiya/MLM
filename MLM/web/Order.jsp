@@ -84,6 +84,9 @@
                                         <form id="validation_demo" method="post" action="Controller">
                                             <input type="hidden" name="Action" id="Action"
                                                    value="SaveTrade" class="validate[required] medium" />
+                                            <input type="hidden" name="SubAction" id="SubAction" value="<%if (request.getParameter("uid") != null) {
+                                                                    out.print("Update");
+                                                                }%>" class="validate[required] medium" />      
                                             <div class="section ">
                                                 <div class="span2 numericonly">
                                                     <label> Order ID<small>Order Identity Number</small></label>

@@ -24,7 +24,7 @@ public class Ajax {
     }
 
     public ArrayList<Product> getProduct_By_Cat(Integer Cat_id) {
-        ResultSet rs = db.querys("select * from TBL_ITEM where CTG_ID=" + Cat_id);
+        ResultSet rs = db.querys("select TI.*,(select sum(CT.TAX) from CTG_TAX CT where CT.CTG_ID=TI.CTG_ID) as TAX from TBL_ITEM TI where TI.CTG_ID=" + Cat_id);
         ArrayList<Product> Pr_All = new ArrayList<Product>();
         try {
             while (rs.next()) {
@@ -34,11 +34,11 @@ public class Ajax {
                 pr.setCtgid(rs.getInt("CTG_ID"));
                 pr.setStock(rs.getInt("STOCK"));
                 pr.setRate(rs.getInt("RATE"));
+                pr.setTax(rs.getInt("TAX"));
                 pr.setPrelevel(rs.getInt("PREORDER_LEVEL"));
                 /*if(rs.getInt("TAX_FLAG")==1){
                  //db.queryint("select  from ")
                  }*/
-                pr.setTax(0);
                 pr.setImg(rs.getString("IMAGE"));
                 Pr_All.add(pr);
             }

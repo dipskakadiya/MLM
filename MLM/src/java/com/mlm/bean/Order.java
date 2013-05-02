@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author sai
  */
-public class Trade {
+public class Order {
     private Integer order_id;
     private Integer mem_id;
     private String order_date;
@@ -19,10 +19,10 @@ public class Trade {
     private Integer T_tax;
     private Integer Discount;
     private Integer Total;
-    private ArrayList<TradeDetail> Order;
+    private ArrayList<OrderDetail> Order;
     DBConnection db;
     
-    public Trade() {
+    public Order() {
         T_gross=0;
         T_tax=0;
         Discount=0;
@@ -86,17 +86,17 @@ public class Trade {
         this.Total = Total;
     }
     
-    public ArrayList<TradeDetail> getOrder() {
+    public ArrayList<OrderDetail> getOrder() {
         return Order;
     }
 
-    public void setOrder(ArrayList<TradeDetail> Order) {
+    public void setOrder(ArrayList<OrderDetail> Order) {
         this.Order = Order;
     }
     
      //Insert
     public void Insert(){
-        // New Trade
+        // New Order
             db.queryi("insert into tbl_order values (" + order_id + "," + mem_id + ","+order_date+",0,0,0,0)");
             for (int i = 0; i < Order.size(); i++) {
                 Order.get(i).Insert(db);
@@ -115,11 +115,23 @@ public class Trade {
     
     //Update 
     public void Update(){
-        db.queryud("");
+        OrderDetail Temp=new OrderDetail();
+        Temp.delete(db, order_id);
+        for (int i = 0; i < Order.size(); i++) {
+                Order.get(i).Insert(db);
+                T_gross+=Order.get(i).getTGross();
+                T_tax+=Order.get(i).getTax();
+                Total+=Order.get(i).getTotal();                
+            }
+        
     }
     //Delete
-    public void delete(){
-        db.queryud("");
+    public void delete(DBConnection db){
+        OrderDetail Temp=new OrderDetail();
+        Temp.delete(db, order_id);
+        db.queryud("delete from tbl_order where ORDER_ID="+order_id);
+        db.queryi("update tbl_order set T_GROSS="+T_gross+",T_TAX="+T_tax+",DISCOUNT="+Discount+",TOTAL="+Total+" where ORDER_ID="+order_id);
     }
+    
 
 }
