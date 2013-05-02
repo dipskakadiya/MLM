@@ -4,6 +4,9 @@
  */
 package com.mlm.bean;
 
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
 /**
  *
  * @author sai
@@ -12,6 +15,12 @@ public class State {
      private Integer stateid;
      private String state;
       private Integer cou_id;
+      DBConnection db;
+
+    public State() {
+        db=DBConnection.db;
+    }
+      
 
     public Integer getStateid() {
         return stateid;
@@ -35,5 +44,22 @@ public class State {
 
     public void setCou_id(Integer cou_id) {
         this.cou_id = cou_id;
+    }
+    
+    public ArrayList<State> getAll(int Cou_id){
+        ResultSet rs = db.querys("select * from STATE where CO_ID=" + Cou_id + " order by ST_ID");
+        ArrayList<State> St_All = new ArrayList<State>();
+        try {
+            while (rs.next()) {
+                State St = new State();
+                St.setCou_id(rs.getInt("CO_ID"));
+                St.setStateid(rs.getInt("ST_ID"));
+                St.setState(rs.getString("ST_NAME"));
+                St_All.add(St);
+            }
+        } catch (Exception ex) {
+            ex.getMessage();
+        }
+        return St_All;
     }
 }

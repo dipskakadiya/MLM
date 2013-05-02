@@ -32,14 +32,15 @@ public class CallAjax implements Action {
             Product p = new Product();
             ArrayList<Product> Pr_All = p.getAllBYCTG(Integer.parseInt(req.getParameter("id")));
             req.setAttribute("Product", Pr_All);
-            req.setAttribute("Action", req.getParameter("SubAction"));
         } else if (req.getParameter("SubAction").equals("GetState")) {
-            ArrayList<State> St_All = a.getState(req.getParameter("id"));
+            State s=new State();
+            ArrayList<State> St_All =s.getAll(Integer.parseInt(req.getParameter("id"))); 
             req.setAttribute("State", St_All);
         } else if (req.getParameter("SubAction").equals("GetCity")) {
             ArrayList<City> Ct_All = a.getCity(req.getParameter("id"));
             req.setAttribute("Cities", Ct_All);
         }
+        req.setAttribute("Action", req.getParameter("SubAction"));
         return "Ajax.jsp";
     }
 }
