@@ -374,6 +374,17 @@
             ResetForm();
         });	
         
+        
+    //Getting All State
+    $.ajax({url:"Controller?Action=CallAjax&SubAction=GetState&id="+$('#country').val(),success:function(result){
+            $('#stateDisplay').html(result);
+        }}); 
+    $('#country').change( function() {
+        $.ajax({url:"Controller?Action=CallAjax&SubAction=GetState&id="+$(this).val(),success:function(result){
+                $('#stateDisplay').html(result);
+            }});
+    });
+        
       
     });
 </script>
@@ -590,13 +601,4 @@
         return pattern.test(emailAddress);
     } 
     
-    //Getting All State
-    $.ajax({url:"Controller?Action=CallAjax&SubAction=GetState&id="+$('#country').val(),success:function(result){
-            $('#stateDisplay').html(result);
-        }}); 
-    $('#country').change( function() {
-        $.ajax({url:"Controller?Action=CallAjax&SubAction=GetState&id="+$(this).val(),success:function(result){
-                $('#stateDisplay').html(result);
-            }});
-    });
 </script>

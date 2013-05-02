@@ -34,8 +34,8 @@ public class ShowMember implements Action {
         Integer Mem_id = null;
         try {
             //Get All Member 
-            MemberTree MT = new MemberTree();
-            Member_All = MT.GetList(1);
+            MemberTree MT = new MemberTree(1);
+            Member_All = MT.GetList();
             
             //Get All Country
             Country_All=new ArrayList<Country>();

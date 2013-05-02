@@ -4,6 +4,9 @@
  */
 package com.mlm.bean;
 
+import com.mlm.dbutility.DBConnection;
+import java.util.ArrayList;
+
 /**
  *
  * @author sai
@@ -16,12 +19,15 @@ public class Trade {
     private Integer T_tax;
     private Integer Discount;
     private Integer Total;
-
+    private ArrayList<TradeDetail> Order;
+    DBConnection db;
+    
     public Trade() {
         T_gross=0;
         T_tax=0;
         Discount=0;
         Total=0;
+        db = new DBConnection();
     }
     
     public Integer getOrder_id() {
@@ -78,6 +84,42 @@ public class Trade {
 
     public void setTotal(Integer Total) {
         this.Total = Total;
+    }
+    
+    public ArrayList<TradeDetail> getOrder() {
+        return Order;
+    }
+
+    public void setOrder(ArrayList<TradeDetail> Order) {
+        this.Order = Order;
+    }
+    
+     //Insert
+    public void Insert(){
+        // New Trade
+            db.queryi("insert into tbl_order values (" + order_id + "," + mem_id + ","+order_date+",0,0,0,0)");
+            for (int i = 0; i < Order.size(); i++) {
+                Order.get(i).Insert(db);
+                T_gross+=Order.get(i).getTGross();
+                T_tax+=Order.get(i).getTax();
+                Total+=Order.get(i).getTotal();                
+            }
+            //Coupon
+            //if(!req.getParameter("coupan").equals("") && req.getParameter("coupan")!=null){
+              // rs = db.querys("select RATE from COUPON where COUPON_CODE=" + req.getParameter("coupan"));
+               //Discount=Total*rs.getInt("RATE")/100; 
+            //}
+            Total-=Discount;
+            db.queryi("update tbl_order set T_GROSS="+T_gross+",T_TAX="+T_tax+",DISCOUNT="+Discount+",TOTAL="+Total+" where ORDER_ID="+order_id);
+    }
+    
+    //Update 
+    public void Update(){
+        db.queryud("");
+    }
+    //Delete
+    public void delete(){
+        db.queryud("");
     }
 
 }

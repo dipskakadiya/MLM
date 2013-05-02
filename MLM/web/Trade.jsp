@@ -83,7 +83,7 @@
                                     <div id="tab2" class="tab_content">
                                         <form id="validation_demo" method="post" action="Controller">
                                             <input type="hidden" name="Action" id="Action"
-                                                   value="AddTrade" class="validate[required] medium" />
+                                                   value="SaveTrade" class="validate[required] medium" />
                                             <div class="section ">
                                                 <div class="span2 numericonly">
                                                     <label> Order ID<small>Order Identity Number</small></label>

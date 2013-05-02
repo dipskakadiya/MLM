@@ -14,10 +14,10 @@ import java.util.ArrayList;
 public class Demo {
     public static void main(String [ ] args){
         ArrayList<Member> RtMember;
-        MemberTree mt=new MemberTree();
-        RtMember=mt.GetList(1);
-        for (int i = 0; i < RtMember.size(); i++) {
-            System.out.println("NOde:"+RtMember.get(i).getFirstname());
-        }
+        MemberTree mt=new MemberTree(1);
+        //mt.GetList(1);
+        System.out.println(mt.getnode());
+        System.out.println(mt.getparent());
+        System.out.println(mt.getedge());
     }
 }

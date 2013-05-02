@@ -4,11 +4,15 @@
  */
 package com.mlm.bean;
 
+import com.mlm.dbutility.DBConnection;
+import java.sql.ResultSet;
+
 /**
  *
  * @author sai
  */
 public class TradeDetail {
+
     private Integer OrderId;
     private Integer ItemID;
     private String ItemName;
@@ -16,7 +20,7 @@ public class TradeDetail {
     private Integer Rate;
     private Integer TGross;
     private Integer TaxPer;
-    private Integer Tax;    
+    private Integer Tax;
     private Integer Total;
 
     public Integer getOrderId() {
@@ -90,5 +94,28 @@ public class TradeDetail {
     public void setTotal(Integer Total) {
         this.Total = Total;
     }
-    
+
+    //Insert
+    public void Insert(DBConnection db) {
+        try {
+            ResultSet rsItem = db.querys("select TI.RATE,(select sum(CT.TAX) from CTG_TAX CT where CT.CTG_ID=TI.CTG_ID) as Tax from TBL_ITEM TI where TI.ITEM_ID=" + ItemID);
+            rsItem.next();
+            TGross = Qty * rsItem.getInt("RATE");
+            Tax = TGross * rsItem.getInt("Tax") / 100;
+            Total = TGross + Tax;
+            db.queryi("insert into order_detail values (" + OrderId + "," + ItemID + "," + Qty + "," + Rate + "," + TGross + "," + Tax + "," + Total + ")");
+        } catch (Exception ex) {
+            ex.getMessage();
+        }
+    }
+
+    //Update 
+    public void Update(DBConnection db) {
+        db.queryud("");
+    }
+    //Delete
+
+    public void delete(DBConnection db) {
+        db.queryud("");
+    }
 }
