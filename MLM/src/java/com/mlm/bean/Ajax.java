@@ -2,12 +2,11 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mlm.model;
+package com.mlm.bean;
 
 import com.mlm.bean.City;
 import com.mlm.bean.Product;
 import com.mlm.bean.State;
-import com.mlm.dbutility.DBConnection;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
@@ -20,7 +19,7 @@ public class Ajax {
     DBConnection db;
 
     public Ajax() {
-        db = DBConnection.db;
+        DBConnection db= DBConnection.db;
     }
 
     public ArrayList<Product> getProduct_By_Cat(Integer Cat_id) {

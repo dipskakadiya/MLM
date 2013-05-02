@@ -4,12 +4,8 @@
  */
 package com.mlm.bean;
 
-import com.mlm.dbutility.DBConnection;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *

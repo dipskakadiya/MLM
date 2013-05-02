@@ -7,7 +7,7 @@ package com.mlm.model;
 import com.mlm.action.Action;
 import com.mlm.bean.Country;
 import com.mlm.bean.Member;
-import com.mlm.dbutility.MemberTree;
+import com.mlm.bean.MemberTree;
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

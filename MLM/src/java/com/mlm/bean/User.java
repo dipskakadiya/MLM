@@ -4,7 +4,6 @@
  */
 package com.mlm.bean;
 
-import com.mlm.dbutility.DBConnection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 

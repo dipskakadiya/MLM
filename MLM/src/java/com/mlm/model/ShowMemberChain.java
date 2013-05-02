@@ -5,7 +5,7 @@
 package com.mlm.model;
 
 import com.mlm.action.Action;
-import com.mlm.dbutility.MemberTree;
+import com.mlm.bean.MemberTree;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 

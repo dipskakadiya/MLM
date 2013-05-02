@@ -7,7 +7,6 @@ package com.mlm.model;
 import com.mlm.action.Action;
 import com.mlm.bean.Categories;
 import com.mlm.bean.Product;
-import com.mlm.dbutility.DBConnection;
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

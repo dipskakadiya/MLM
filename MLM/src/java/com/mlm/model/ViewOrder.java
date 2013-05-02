@@ -6,12 +6,7 @@ package com.mlm.model;
 
 import com.mlm.action.Action;
 import com.mlm.bean.Order;
-import com.mlm.dbutility.DBConnection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 

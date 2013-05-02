@@ -2,12 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mlm.dbutility;
+package com.mlm.bean;
 
-import com.mlm.bean.Member;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.Queue;
 import java.util.Stack;
 
 /**

@@ -13,11 +13,8 @@ import java.util.ArrayList;
  */
 public class Demo {
     public static void main(String [ ] args){
-        ArrayList<Member> RtMember;
-        MemberTree mt=new MemberTree(1);
-        //mt.GetList(1);
-        System.out.println(mt.getnode());
-        System.out.println(mt.getparent());
-        System.out.println(mt.getedge());
+        //DBConnection db= DBConnection.db;
+        //Integer id=db.queryint("select MEM_ID from TBL_MEMBER where USERNAME='hr'");
+        //System.out.print(""+id);
     }
 }
