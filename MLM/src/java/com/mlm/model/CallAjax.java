@@ -18,13 +18,6 @@ import javax.servlet.http.HttpServletResponse;
  * @author sai
  */
 public class CallAjax implements Action {
-
-    Ajax a;
-
-    public CallAjax() {
-        a = new Ajax();
-    }
-
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse res) {
         System.out.println("ajex call");
@@ -33,11 +26,12 @@ public class CallAjax implements Action {
             ArrayList<Product> Pr_All = p.getAllBYCTG(Integer.parseInt(req.getParameter("id")));
             req.setAttribute("Product", Pr_All);
         } else if (req.getParameter("SubAction").equals("GetState")) {
-            State s=new State();
-            ArrayList<State> St_All =s.getAll(Integer.parseInt(req.getParameter("id"))); 
+            State st=new State();
+            ArrayList<State> St_All =st.getAll(Integer.parseInt(req.getParameter("id"))); 
             req.setAttribute("State", St_All);
         } else if (req.getParameter("SubAction").equals("GetCity")) {
-            ArrayList<City> Ct_All = a.getCity(req.getParameter("id"));
+            City ci=new City();
+            ArrayList<City> Ct_All = ci.getAll(Integer.parseInt(req.getParameter("id")));
             req.setAttribute("Cities", Ct_All);
         }
         req.setAttribute("Action", req.getParameter("SubAction"));
