@@ -17,13 +17,6 @@ import javax.servlet.http.HttpServletResponse;
  * @author sai
  */
 public class ManageOrder implements Action {
-
-    DBConnection db;
-
-    public ManageOrder() {
-        db = new DBConnection();
-    }
-
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse res) {
         String[] grid = req.getParameterValues("mygrid");

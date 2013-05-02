@@ -6,10 +6,7 @@ package com.mlm.bean;
 
 import com.mlm.dbutility.DBConnection;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -27,7 +24,7 @@ public class Payment {
     private ArrayList<Payment> AllPayment= null;   
     
     public Payment() {
-         db = new DBConnection();
+         db = DBConnection.db;
     }
     
     public int getAmount() {

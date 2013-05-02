@@ -21,7 +21,7 @@ public class Commission {
     DBConnection db;
     ArrayList<Commission> comission_All;
     public Commission() {
-        db=new DBConnection();
+        db= DBConnection.db;
     }
     
     public Integer getCOM_ID() {

@@ -19,6 +19,10 @@ public class User {
     private DBConnection db;
     private String status;
 
+    public User() {
+        db= DBConnection.db;
+    }
+    
     public Integer getMemid() {
         return memid;
     }
@@ -34,10 +38,7 @@ public class User {
     public void setStatus(String status) {
         this.status = status;
     }
-    public User() {
-        db=new DBConnection();
-    }
-    
+   
     public String getUsername() {
         return username;
     }

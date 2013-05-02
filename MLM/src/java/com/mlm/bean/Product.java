@@ -29,7 +29,7 @@ public class Product {
     ArrayList<Product> Product_All = null;
     private DBConnection db;
     public Product() {
-         db = new DBConnection();
+         db = DBConnection.db;
     }
     
     public String getCtgname() {

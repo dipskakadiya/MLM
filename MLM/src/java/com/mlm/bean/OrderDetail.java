@@ -30,7 +30,7 @@ public class OrderDetail {
     DBConnection db;
 
     public OrderDetail() {
-        db = new DBConnection();
+        db = DBConnection.db;
     }
 
     public Integer getOrderId() {

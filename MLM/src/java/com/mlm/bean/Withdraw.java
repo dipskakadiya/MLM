@@ -22,7 +22,7 @@ public class Withdraw {
     DBConnection db;
 
     public Withdraw() {
-        db=new DBConnection();
+        db= DBConnection.db;
     }
     
     public Integer getWith_Id() {

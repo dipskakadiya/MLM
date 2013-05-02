@@ -31,7 +31,7 @@ public class Member {
     private DBConnection db;
 
     public Member() {
-         db = new DBConnection();
+         db = DBConnection.db;
     }
 
     public Integer getParent_ID() {

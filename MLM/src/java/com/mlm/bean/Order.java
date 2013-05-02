@@ -34,7 +34,7 @@ public class Order {
         T_tax = 0;
         Discount = 0;
         Total = 0;
-        db = new DBConnection();
+        db = DBConnection.db;
     }
 
     public Integer getOrder_id() {

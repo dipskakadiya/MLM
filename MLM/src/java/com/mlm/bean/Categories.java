@@ -18,7 +18,7 @@ public class Categories {
     private DBConnection db;
     private ArrayList<Categories> Cat_All; 
     public Categories() {
-         db = new DBConnection();
+         db = DBConnection.db;
     }
     
     public Integer getCatid() {

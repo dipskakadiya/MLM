@@ -20,7 +20,7 @@ public class Ajax {
     DBConnection db;
 
     public Ajax() {
-        db = new DBConnection();
+        db = DBConnection.db;
     }
 
     public ArrayList<Product> getProduct_By_Cat(Integer Cat_id) {

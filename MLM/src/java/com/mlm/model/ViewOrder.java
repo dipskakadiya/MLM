@@ -20,12 +20,6 @@ import javax.servlet.http.HttpServletResponse;
  * @author sai
  */
 public class ViewOrder  implements Action{
-
-     DBConnection db;
-    public ViewOrder(){
-        db=new DBConnection();
-    }
-    
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse res) {
         ArrayList<Order> OrderAll;

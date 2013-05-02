@@ -23,7 +23,7 @@ public class Coupon {
     ArrayList<Coupon> coupon_All=null;
     public Coupon()
     {
-        db=new DBConnection();
+        db= DBConnection.db;
     }
 
     public Integer getCoupon_ID() {

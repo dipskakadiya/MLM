@@ -16,15 +16,6 @@ import javax.servlet.http.HttpServletResponse;
  * @author Nadim
  */
 public class ShowComission implements Action{
-    
-    DBConnection db;
-    
-    
-    public ShowComission()
-    {
-        db=new DBConnection();
-    }
-
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse res) {
         ArrayList<Commission> comision_All;

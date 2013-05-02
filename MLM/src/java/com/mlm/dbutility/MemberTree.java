@@ -31,8 +31,8 @@ public class MemberTree {
         try {
             RtMember = new ArrayList<Member>();
             St = new Stack<TreeNode>();
-            db = new DBConnection();
-            
+            db = DBConnection.db;
+
             ResultSet RsRoot = db.querys("select TM.username,MD.* from TBL_MEMBER TM,View_Member MD where Tm.MEM_ID=" + Rid + " and Tm.MEM_ID=MD.MEM_ID");
             while (RsRoot.next()) {
                 TempMem = new Member();

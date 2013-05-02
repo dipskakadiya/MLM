@@ -19,7 +19,7 @@ public class Country {
     DBConnection db;
 
     public Country() {
-        db=new DBConnection();
+        db= DBConnection.db;
     }
     
     public Integer getCou_id() {
