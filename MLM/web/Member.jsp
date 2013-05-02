@@ -331,7 +331,7 @@
         $("#mobile").mask("9999999999");
         jQuery("#demovalidation").validationEngine({
             prettySelect : true,
-            useSuffix: "_chzn",
+            useSuffix: "_chzn"
         });
 				
         // Example Overlay form
@@ -388,7 +388,7 @@
     $(document).ready(function(){
         $('#country').change();
        
-    <%if (request.getParameter("uid") != null) {%>
+    <%if(request.getParameter("uid") != null) {%>
             $(".load_page").hide();
             $('.show_add').show();
          

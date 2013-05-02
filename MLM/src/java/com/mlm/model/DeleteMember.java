@@ -21,9 +21,8 @@ public class DeleteMember implements Action{
     public String execute(HttpServletRequest req, HttpServletResponse res) {
         try {
             Member m=new Member();
-               System.out.println("In delete member ");
                m.setMemid(Integer.parseInt(req.getParameter("did")));
-                m.delete();
+               m.delete();
                 res.sendRedirect("Controller?Action=ShowMember");
         } catch (Exception ex) {
             ex.getMessage();

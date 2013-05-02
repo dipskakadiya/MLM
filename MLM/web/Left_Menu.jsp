@@ -12,7 +12,7 @@
 		<li><a href="Controller?Action=ShowProduct"><span class="ico gray  dimensions"></span><b>Product</b></a>
 			<ul>
 				<li><a href="Controller?Action=ShowProduct">Product</a></li>
-				<li><a href="Category.jsp"> Category </a></li>
+				<li><a href="Controller?Action=ShowCategory"> Category </a></li>
 			</ul></li>
 		<li><a href="Controller?Action=ShowTrade"><span
 				class="ico gray shadow   encrypt"></span><b>Order</b> </a>
@@ -20,7 +20,7 @@
 				<li><a href="Controller?Action=ShowTrade"> Order </a></li>
 				<li><a href="Controller?Action=ViewTrade">View Order</a></li>
 			</ul></li>
-		<li><a href="Payment.jsp"><span
+		<li><a href="Controller?Action=ShowPayment"><span
 				class="ico gray shadow  spreadsheet"></span><b>Payment</b> </a></li>
 		<li><a href=""><span
 				class="ico gray shadow   satellite"></span><b>Commission</b> </a>
