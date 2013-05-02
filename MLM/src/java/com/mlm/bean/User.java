@@ -61,16 +61,13 @@ public class User {
                 Integer tmemid=Rs.getInt("MEM_ID");
                 String tusername=Rs.getString("USERNAME");
                 String tpwd=Rs.getString("PASSWORD");
-                System.out.println(tmemid+" "+tusername+" "+tpwd+""+username);
                 memid=Rs.getInt("MEM_ID");
-
                 if(tusername.equalsIgnoreCase(username)){
                     if(tpwd.equals(password)){
                         return true;
                     }                   
                 }
             }
-          
         } catch (SQLException ex) {
            // Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
         }

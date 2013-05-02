@@ -14,14 +14,17 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author sai
  */
-public class CallAjax implements Action {
+public class Ajax implements Action{
 
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse res) {
-        Product p = new Product();
-        ArrayList<Product> Pr_All = p.getAllBYCTG(Integer.parseInt(req.getParameter("id")));
-        req.setAttribute("Product", Pr_All);
+        ArrayList<Product> PrAll;
+        Product Pr=new Product();
+        System.out.println(req.getParameter("id"));
+        PrAll=Pr.getAllBYCTG(Integer.parseInt(req.getParameter("id")));
+        req.setAttribute("Product", PrAll);
         req.setAttribute("Action", req.getParameter("SubAction"));
         return "Ajax.jsp";
     }
+    
 }
