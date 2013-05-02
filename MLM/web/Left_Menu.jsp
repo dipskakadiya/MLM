@@ -22,10 +22,10 @@
 			</ul></li>
 		<li><a href="Controller?Action=ShowPayment"><span
 				class="ico gray shadow  spreadsheet"></span><b>Payment</b> </a></li>
-		<li><a href=""><span
+		<li><a href="Controller?Action=ShowComission"><span
 				class="ico gray shadow   satellite"></span><b>Commission</b> </a>
 			<ul>
-				<li><a href=""> Commission </a></li>
+				<li><a href="Controller?Action=ShowComission"> Commission </a></li>
 				<li><a href="">Withdraw</a></li>
 			</ul></li>
 		
@@ -33,7 +33,7 @@
 				class="ico gray shadow pictures_folder"></span><b>Reports </b></a></li>
 		<li><a href="Trash.jsp"><span
 				class="ico gray  shadow firewall"></span><b>Trash</b></a></li>
-		<li><a href="addCoupon.jsp"><span
+		<li><a href="Controller?Action=ShowCoupon"><span
 				class="ico gray  shadow location"></span><b>Coupon</b></a></li>
 	</ul>
 </div>
