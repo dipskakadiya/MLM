@@ -5,7 +5,10 @@
 package com.mlm.model;
 
 import com.mlm.action.Action;
+import com.mlm.bean.Ajax;
+import com.mlm.bean.City;
 import com.mlm.bean.Product;
+import com.mlm.bean.State;
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,12 +19,27 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class CallAjax implements Action {
 
+    Ajax a;
+
+    public CallAjax() {
+        a = new Ajax();
+    }
+
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse res) {
-        Product p = new Product();
-        ArrayList<Product> Pr_All = p.getAllBYCTG(Integer.parseInt(req.getParameter("id")));
-        req.setAttribute("Product", Pr_All);
-        req.setAttribute("Action", req.getParameter("SubAction"));
+        System.out.println("ajex call");
+        if (req.getParameter("SubAction").equals("GetProduct")) {
+            Product p = new Product();
+            ArrayList<Product> Pr_All = p.getAllBYCTG(Integer.parseInt(req.getParameter("id")));
+            req.setAttribute("Product", Pr_All);
+            req.setAttribute("Action", req.getParameter("SubAction"));
+        } else if (req.getParameter("SubAction").equals("GetState")) {
+            ArrayList<State> St_All = a.getState(req.getParameter("id"));
+            req.setAttribute("State", St_All);
+        } else if (req.getParameter("SubAction").equals("GetCity")) {
+            ArrayList<City> Ct_All = a.getCity(req.getParameter("id"));
+            req.setAttribute("Cities", Ct_All);
+        }
         return "Ajax.jsp";
     }
 }

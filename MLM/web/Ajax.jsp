@@ -3,7 +3,7 @@
     Created on : Apr 17, 2013, 10:20:13 AM
     Author     : sai
 --%>
-
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!--  Other Animation JQuery  -->
 <script>
     jQuery(document).ready(function() {
