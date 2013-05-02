@@ -24,7 +24,7 @@ public class DeleteMember implements Action{
                System.out.println("In delete member ");
                m.setMemid(Integer.parseInt(req.getParameter("did")));
                 m.delete();
-                res.sendRedirect("Controller?Action=ShowMemeber");
+                res.sendRedirect("Controller?Action=ShowMember");
         } catch (Exception ex) {
             ex.getMessage();
         }

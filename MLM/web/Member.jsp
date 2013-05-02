@@ -79,7 +79,7 @@
                                                             <td>${s.getMobile()}</td>
                                                             <td>${s.getEmail()}</td>
                                                             <td>
-                                                                <span class="tip"><a original-title="Edit"  name="#tab2" href="Controller?Action=ShowMemeber&uid=${s.getMemid()}"><img src="images/icon/icon_edit.png"></a></span> 
+                                                                <span class="tip"><a original-title="Edit"  name="#tab2" href="Controller?Action=ShowMember&uid=${s.getMemid()}"><img src="images/icon/icon_edit.png"></a></span> 
                                                                 <span class="tip"><a href="Controller?Action=DeleteMember&did=${s.getMemid()}" title="Delete"><img src="images/icon/icon_delete.png"></a></span> 
                                                             </td>
 
@@ -109,8 +109,8 @@
                                                     <!-- End widget-header -->
 
                                                     <div class="widget-content">
-                                                        <form id="Addmemeber" method="Post" action="Controller?Action=SaveMemeber" >
-                                                            <input type="hidden" name="Action" id="Action" value="SaveMemeber" class="validate[required] medium" />        
+                                                        <form id="Addmemeber" method="Post" action="Controller?Action=SaveMember" >
+                                                            <input type="hidden" name="Action" id="Action" value="SaveMember" class="validate[required] medium" />        
                                                             <input type="hidden" name="SubAction" id="SubAction" value="<%if (request.getParameter("uid") != null) {
                                                                     out.print("Update");
                                                                 }%>" class="validate[required] medium" />      

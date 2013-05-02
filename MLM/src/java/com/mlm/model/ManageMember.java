@@ -42,7 +42,7 @@ public class ManageMember implements Action{
         } catch (Exception ex) {
             ex.getMessage();
         }
-        return "Controller?Action=ShowMemeber";
+        return "Controller?Action=ShowMember";
     }
     
 }
