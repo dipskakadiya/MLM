@@ -30,9 +30,8 @@ public class ShowOrder implements Action {
             //Get Order info for Update
             Or= new Order();
             Or.getSinglelOrder(Integer.parseInt(req.getParameter("uid")));
-            System.out.println(Or.getTotal());
+            System.out.println("orderid:"+Or.getOrder_id());
             ArrayList<OrderDetail> od=Or.getOrder();
-            System.out.println(od.get(0).getTotal());
         } else {
             //Get Orderid for new Order
             Or= new Order();

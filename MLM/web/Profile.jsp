@@ -1,8 +1,13 @@
+<%@page import="com.mlm.bean.Member"%>
 <!DOCTYPE html>
 <html lang="en">
   
 <!-- Mirrored from zicedemo.com/1.7/table.html by HTTrack Website Copier/3.x [XR&CO'2010], Thu, 10 Jan 2013 06:26:19 GMT -->
 <head>
+    <% Member mb=new Member();
+    mb=(Member) request.getAttribute("member");
+   System.out.println(mb.getAddress());
+%>
         <meta charset="utf-8">
         <title>Ziceinclude&trade; admin version 1.7 online</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -74,13 +79,13 @@
                                             <div class="section ">
                                                     <label> Full name<small></small></label>   
                                                     <div> 
-                                                        Mayur Patel
+                                                        <% out.print(mb.getFirstname());%>
                                                     </div>
                                             </div>
                                             <div class="section">
                                                         <label> UserName  <small></small></label>
                                                     <div>
-                                                   			201212030@daiict.ac.in
+                                                   	<% out.print(mb.getLastname());%>
 																					                                                    
                                                     </div>
                                                    
@@ -89,40 +94,36 @@
                                              <div class="section ">
                                                     <label> Birth Day<small></small></label>   
                                                     <div> 
-                                                                     04/10/1991
+                                                                     <%out.print(mb.getBirthdate());%>
                                                                                   	                        </div>
                                             </div>
                                             <div class="section ">
                                                     <label>gender<small></small></label>   
                                                     <div> 
                                                       <div>
-                                                          Male
+                                                          <% out.print(mb.isOptgender());%>
                                                       </div>
                                                     </div>
                                             </div>
                                             <div class="section ">
                                                     <label> Email<small></small></label>   
                                                     <div> 
-                                                                                  	201212030@daiict.ac.in
+                                                        <%out.print(mb.getEmail());%>
                                                                                   	                        </div>
                                             </div>
                                              <div class="section ">
                                                     <label> Address<small></small></label>   
                                                     <div> 
-                                                                   H-214 HOR daiict gandhinagar
+                                                                   <%out.print(mb.getAddress());%>
                                                                                   	                        </div>
                                             </div>
                                              <div class="section ">
                                                     <label> Contact Number<small></small></label>   
                                                     <div> 
-                                                                      9979988388
+                                                                      <% out.print(mb.getMobile()); %>
                                                                                   	                        </div>
                                             </div>
-                                            <div class="section last">
-                                                    <div>
-                                                      <a class="btn submit_form" >Edit</a>
-                                                    </div>
-                                           </div>
+                                            
                                     </div>
         
                                     </div><!-- row-fluid -->

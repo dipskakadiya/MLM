@@ -42,7 +42,7 @@ public class Controller extends HttpServlet {
         try {
             String view=null;
             /* TODO output your page here. You may use following sample code. */
-            if (session.getAttribute("sessionUserName") == null ||session.getAttribute("sessionUserName").equals("") ) {
+            if ((session.getAttribute("sessionUserName") == null ||session.getAttribute("sessionUserName").equals("")) && request.getParameter("Action").equals("ShowForwardPsw")==false && request.getParameter("Action").equals("ForwardPsw")==false ) {
                 view="index.jsp";
             } else {
                 String theAction = request.getParameter("Action");
@@ -56,7 +56,7 @@ public class Controller extends HttpServlet {
             }
             if (view != null) {
                     RequestDispatcher rd = request.getRequestDispatcher(view);
-                    rd.forward(request, response);
+                        rd.forward(request, response);
                 }
         } finally {
             out.close();

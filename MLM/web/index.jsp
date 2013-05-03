@@ -42,6 +42,12 @@
             color:#A31F1A; text-decoration:none
         }    
         </style>
+        <script type="text/javascript" >
+                    function forgot()
+                    {
+                        window.location="Controller?Action=ShowForwardPsw";
+                    }
+        </script>
         </head>
         <body >
          
@@ -69,7 +75,7 @@
                   <div class=" pull-right" style="margin-right:-8px;">
                       <div class="btn-group">
                         <button type="button" class="btn" id="but_login">Login</button>
-                        <button type="button" class="btn" id="forgetpass"> Forget Pass</button>
+                        <button type="button" class="btn" id="forgetpass" onclick="forgot()"> Forget Pass</button>
                       </div>
         
                   </div>

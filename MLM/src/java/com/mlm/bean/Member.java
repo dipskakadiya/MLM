@@ -4,6 +4,8 @@
  */
 package com.mlm.bean;
 
+import java.sql.ResultSet;
+
 
 /**
  *
@@ -26,6 +28,15 @@ public class Member {
     private Integer pincode;
     private String image;
     private DBConnection db;
+    private Integer ACC_FLAG;
+
+    public Integer getACC_FLAG() {
+        return ACC_FLAG;
+    }
+
+    public void setACC_FLAG(Integer ACC_FLAG) {
+        this.ACC_FLAG = ACC_FLAG;
+    }
 
     public Member() {
          db = DBConnection.db;
@@ -176,4 +187,54 @@ public class Member {
     public void getNextID(){
         memid=db.queryint("select max(MEM_ID)+1 from TBL_MEMBER");
     }
+    
+        public Member getOneMember(int id){
+            Member mb=new Member();
+            String date=null;
+            int i=0;
+        try {
+            
+          ResultSet rs_member=db.querys("select * from MEMBER_DETAIL where MEM_ID="+id);
+          while (rs_member.next()) {
+                      mb.setMemid(rs_member.getInt("MEM_ID"));
+                      mb.setFirstname(rs_member.getString("FNAME"));
+                      mb.setLastname(rs_member.getString("LNAME"));
+                      mb.setOptgender(rs_member.getString("GENDER"));
+                      date=rs_member.getString("DOB");
+                      i=date.indexOf(" ");
+                      date=date.substring(0, i);
+                      mb.setBirthdate(date);
+                      mb.setAddress(rs_member.getString("R_ADDRESS"));
+                      mb.setCity(rs_member.getString("CITY_ID"));
+                      mb.setState(rs_member.getString("STATE_ID"));
+                      mb.setCountry(rs_member.getString("COUNTRY_ID"));
+                      mb.setPincode(rs_member.getInt("PINCODE"));
+                      mb.setMobile(rs_member.getString("MOBILENO"));
+                      mb.setEmail(rs_member.getString("EMAIL"));
+                      mb.setImage(rs_member.getString("IMAGE"));
+                  }
+        } catch (Exception ex) {
+            ex.getMessage();
+        }
+        return mb;
+     }
+        
+         public User getPass(String email){
+            User user=new User();
+            String date=null;
+            int i=0;
+        try {
+            
+          ResultSet rs_member=db.querys("select * from TBL_MEMBER TM,MEMBER_DETAIL MD where TM.MEM_ID=MD.MEM_ID and EMAIL='"+email+"'");
+          while (rs_member.next()) {
+                    user.setPassword(rs_member.getString("PASSWORD"));
+                      
+                     
+                  }
+        } catch (Exception ex) {
+            ex.getMessage();
+        }
+        return user;
+     }
+
 }

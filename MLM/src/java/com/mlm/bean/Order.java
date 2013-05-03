@@ -117,7 +117,20 @@ public class Order {
         //}
         Total -= Discount;
         db.queryi("update tbl_order set T_GROSS=" + T_gross + ",T_TAX=" + T_tax + ",DISCOUNT=" + Discount + ",TOTAL=" + Total + " where ORDER_ID=" + order_id);
-    }
+        Integer Comid=db.queryint("select max(COM_ID)+1 from COMMISSION");
+        Double com;
+        System.out.println("Comid="+Comid   );
+        Integer parent=db.queryint("select PARENT from MEMBER_CHAIN where CHILD="+mem_id);
+        com=Total*0.02;
+        System.out.println("insert into COMMISSION values("+Comid+","+com+",sysdate,"+com+",'"+order_id+"')");
+        db.queryi("insert into COMMISSION values("+Comid+","+mem_id+",sysdate,"+com+",'"+order_id+"')");
+        parent=db.queryint("select PARENT from MEMBER_CHAIN where CHILD="+parent);
+        if(parent!=null){
+            Comid++;
+            com=Total*0.04;
+            db.queryi("insert into COMMISSION values("+Comid+","+mem_id+",sysdate,"+com+",'"+order_id+"')");
+        }
+        }
 
     //Update 
     public void Update() {
@@ -155,19 +168,17 @@ public class Order {
         return Remain_order;
     }
 
-    public Order getSinglelOrder(Integer orderid) {
-        Order TempOrder = new Order();
+    public void getSinglelOrder(Integer orderid) {
         try {
             ResultSet Rs_Tr_order = db.querys("select * from TBL_ORDER where ORDER_ID=" + orderid);
             while (Rs_Tr_order.next()) {
-                TempOrder = new Order();
-                TempOrder.setOrder_id(Rs_Tr_order.getInt("ORDER_ID"));
-                TempOrder.setMem_id(Rs_Tr_order.getInt("MEM_ID"));
-                TempOrder.setOrder_date(Rs_Tr_order.getString("ORDER_DATE"));
-                TempOrder.setT_gross(Rs_Tr_order.getInt("T_GROSS"));
-                TempOrder.setT_tax(Rs_Tr_order.getInt("T_TAX"));
-                TempOrder.setDiscount(Rs_Tr_order.getInt("DISCOUNT"));
-                TempOrder.setTotal(Rs_Tr_order.getInt("TOTAL"));
+                setOrder_id(Rs_Tr_order.getInt("ORDER_ID"));
+                mem_id=Rs_Tr_order.getInt("MEM_ID");
+                order_date=Rs_Tr_order.getString("ORDER_DATE");
+                T_gross=Rs_Tr_order.getInt("T_GROSS");
+                T_tax=Rs_Tr_order.getInt("T_TAX");
+                Discount=Rs_Tr_order.getInt("DISCOUNT");
+                Total=Rs_Tr_order.getInt("TOTAL");
             }
             //Get Order detail
             OrderDetail OD = new OrderDetail();
@@ -175,7 +186,6 @@ public class Order {
         } catch (Exception ex) {
             ex.getMessage();
         }
-        return TempOrder;
     }
 
     public ArrayList<Order> getAll() {

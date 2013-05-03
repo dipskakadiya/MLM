@@ -31,7 +31,7 @@ public class MemberTree {
             St = new Stack<TreeNode>();
             db = DBConnection.db;
 
-            ResultSet RsRoot = db.querys("select TM.username,MD.* from TBL_MEMBER TM,View_Member MD where Tm.MEM_ID=" + Rid + " and Tm.MEM_ID=MD.MEM_ID");
+            ResultSet RsRoot = db.querys("select TM.username,TM.ACC_FLAG,MD.* from TBL_MEMBER TM,View_Member MD where Tm.MEM_ID=" + Rid + " and Tm.MEM_ID=MD.MEM_ID");
             while (RsRoot.next()) {
                 TempMem = new Member();
                 TempMem.setUsername(RsRoot.getString("USERNAME"));
@@ -49,6 +49,7 @@ public class MemberTree {
                 TempMem.setMobile(RsRoot.getString("MOBILENO"));
                 TempMem.setEmail(RsRoot.getString("EMAIL"));
                 TempMem.setImage(RsRoot.getString("IMAGE"));
+                TempMem.setACC_FLAG(RsRoot.getInt("ACC_FLAG"));
                 node += "'" + TempMem.getFirstname() + "':{color:'red', shape:'dot', alpha:1},";
             }
             Root = new TreeNode(TempMem);
@@ -57,7 +58,7 @@ public class MemberTree {
                 TreeNode Temp = St.pop();
                  RtMember.add(Temp.Getdata());
                 Childs = new ArrayList<TreeNode>();
-                ResultSet Rschild = db.querys("select TM.username,MD.* from TBL_MEMBER TM,View_Member MD,MEMBER_CHAIN MC where Tm.MEM_ID=MD.MEM_ID and MD.MEM_ID=MC.CHILD and MC.PARENT=" + Temp.Getdata().getMemid()+" order by MD.MEM_ID");
+                ResultSet Rschild = db.querys("select TM.username,TM.ACC_FLAG,MD.* from TBL_MEMBER TM,View_Member MD,MEMBER_CHAIN MC where Tm.MEM_ID=MD.MEM_ID and MD.MEM_ID=MC.CHILD and MC.PARENT=" + Temp.Getdata().getMemid()+" order by MD.MEM_ID");
                 if (Rschild.next()) {
                     parent += "'" + Temp.Getdata().getFirstname() + "',";
                     edge += "'" + Temp.Getdata().getFirstname() + "':{";
@@ -78,6 +79,7 @@ public class MemberTree {
                         TempMem.setMobile(Rschild.getString("MOBILENO"));
                         TempMem.setEmail(Rschild.getString("EMAIL"));
                         TempMem.setImage(Rschild.getString("IMAGE"));
+                        TempMem.setACC_FLAG(Rschild.getInt("ACC_FLAG"));
                         child = new TreeNode(TempMem);
                         St.push(child);
                         Childs.add(child);

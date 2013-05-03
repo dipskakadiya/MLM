@@ -4,7 +4,7 @@
 		<li><img src="images/avatar.png" alt="Online" /></li>
 		<li class="setting">Welcome, <b class="red">${sessionUserName}</b>
 			<ul class="subnav">
-				<li><a href="Profile.jsp">Profile</a></li>
+				<li><a href="Controller?Action=MemberProfile">Profile</a></li>
 				<!-- br class="clearfix"/-->
 			</ul>
 		</li>
