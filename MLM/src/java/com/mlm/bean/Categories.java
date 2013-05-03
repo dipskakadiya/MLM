@@ -5,6 +5,8 @@
 package com.mlm.bean;
 
 import com.mlm.dbutility.DBConnection;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 
 /**
  *
@@ -14,7 +16,7 @@ public class Categories {
     private Integer catid;
     private String catname;
     private DBConnection db;
-
+    private ArrayList<Categories> Cat_All; 
     public Categories() {
          db = new DBConnection();
     }
@@ -48,5 +50,26 @@ public class Categories {
     //Delete
     public void delete(){
         db.queryud("delete from TBL_CTG where CTG_ID="+catid);
+    }
+    
+    public ArrayList<Categories> getall(){
+        try {
+            Cat_All=new ArrayList<Categories>();
+            ResultSet Rs_Cat = db.querys("select * from TBL_CTG order by CTG_ID");
+                Cat_All = new ArrayList<Categories>();
+                while (Rs_Cat.next()) {
+                    Categories ct = new Categories();
+                    ct.setCatid(Rs_Cat.getInt("CTG_ID"));
+                    ct.setCatname(Rs_Cat.getString("CTG_NAME"));
+                    Cat_All.add(ct);
+                }
+        } catch (Exception ex) {
+            ex.getMessage();
+        }
+        return Cat_All;
+    }
+    
+    public void getNewID(){
+        catid=db.queryint("select max(CTG_ID)+1 from TBL_CTG");
     }
 }
