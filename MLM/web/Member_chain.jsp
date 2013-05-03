@@ -1,7 +1,7 @@
 <!DOCTYPE html>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html lang="en">
 <head>
-
 <title>Dashboard</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <jsp:include page="Css_Jq.jsp"></jsp:include>

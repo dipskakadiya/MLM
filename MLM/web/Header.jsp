@@ -1,9 +1,8 @@
-
 <!-- Header -->
 <div id="header">
 	<ul id="account_info" class="pull-right">
 		<li><img src="images/avatar.png" alt="Online" /></li>
-		<li class="setting">Welcome, <b class="red">John Doe</b>
+		<li class="setting">Welcome, <b class="red"><%=session.getAttribute("sessionUserName")%>${sessionUserName}</b>
 			<ul class="subnav">
 				<li><a href="Profile.jsp">Profile</a></li>
 				<li><a href="#">Discussion Board</a></li>

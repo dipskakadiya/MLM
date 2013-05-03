@@ -26,7 +26,7 @@
 				class="ico gray shadow   satellite"></span><b>Commission</b> </a>
 			<ul>
 				<li><a href="Controller?Action=ShowComission"> Commission </a></li>
-				<li><a href="">Withdraw</a></li>
+				<li><a href="Controller?Action=ShowWithdraw">Withdraw</a></li>
 			</ul></li>
 		
                <li><a href="gallery.html"><span

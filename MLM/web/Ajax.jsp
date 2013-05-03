@@ -10,7 +10,6 @@
         $(".chzn-select").chosen();
     });
 </script>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
     if (request.getAttribute("Action") != null) {
         if (request.getAttribute("Action").equals("GetProduct")) {%>

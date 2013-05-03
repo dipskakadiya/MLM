@@ -73,10 +73,10 @@ public class Payment {
     }
 
     public void Insert() {
-        //db.queryi("insert into PAYMENT values("+itemname+"',"+cur_user+","+OrderID+","+date+","+amount+",'"+remark+"')");
+        db.queryi("insert into PAYMENT values("+pay_id+","+mem_id+","+order_id+",'12-oct-2012',"+amount+",'"+remark+"')");
     }
-    
-    public void delete(){
         
+    public void delete(){
+        db.queryud("delete from PAYMENT where 	PAY_ID="+pay_id);
     }
 }

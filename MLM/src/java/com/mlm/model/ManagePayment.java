@@ -22,15 +22,12 @@ public class ManagePayment implements Action{
             Payment Pr=new Payment();
             Pr.setMem_id(Integer.parseInt(req.getAttribute("cur_user").toString()));
             Pr.setPay_date(req.getParameter("date"));
-            Pr.setOrder_id(Integer.parseInt(req.getParameter("OrderID")));
+            Pr.setOrder_id(Integer.parseInt(req.getParameter("Order")));
+            System.out.println(req.getParameter("Order"));
             Pr.setAmount(Integer.parseInt(req.getParameter("amount")));
             Pr.setRemark(req.getParameter("remark"));
             
-            if(req.getParameter("SubAction").equals("Update")){
-                //Pr.Update();
-            }else{        
-                Pr.Insert();
-            }
+            Pr.Insert();
             res.sendRedirect("Controller?Action=ShowPayment");
         } catch (IOException ex) {
             ex.getMessage();

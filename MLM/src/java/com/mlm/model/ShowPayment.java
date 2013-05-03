@@ -29,10 +29,9 @@ public class ShowPayment implements Action {
     public String execute(HttpServletRequest req, HttpServletResponse res) {
         ArrayList<Payment> AllPayment= null;   
         ArrayList<Order> all_order = null;
-        Payment temp_obj_payment = null;
+        //Payment temp_obj_payment = null;
+        
         try{
-            
-           
             //Order_ID resultset
             all_order = new ArrayList<Order>();
             int mem_id = Integer.parseInt(req.getAttribute("cur_user").toString());
@@ -42,7 +41,6 @@ public class ShowPayment implements Action {
                 temp_order.setOrder_id(rs_order.getInt("ORDER_ID"));
                 all_order.add(temp_order);
             }
-            
              //Payment Resultset
             AllPayment = new ArrayList<Payment>();
             ResultSet rs = db.querys("select * from PAYMENT");
@@ -56,27 +54,19 @@ public class ShowPayment implements Action {
                 Pay_Obj.setRemark(rs.getString("REMARK"));
                 AllPayment.add(Pay_Obj);
             }
-            
-            if (req.getParameter("uid") != null) {
-                //Get Trade info for Update
-                for(int i=0;i<AllPayment.size();i++){
-                    if(AllPayment.get(i).getPay_id()==Integer.parseInt(req.getParameter("uid"))){
-                        temp_obj_payment=AllPayment.get(i);
-                    }
-                }
-            } else {
-                /*//Get Orderid for new Trade
-                Cat_id = db.queryint("select max(CTG_ID)+1 from TBL_CTG");
-                Cr = new Categories();
-                Cr.setCatid(Cat_id);*/
-            }
-            
         }catch (SQLException ex) {
             ex.getMessage();
         }
+        
+        int rs_payID = 0;
+        rs_payID = db.queryint("select max(PAY_ID)+1 from PAYMENT");
+        Payment Pr = new Payment();
+        Pr.setPay_id(rs_payID);
+        
         req.setAttribute("AllPayment", AllPayment);
         req.setAttribute("Order", all_order);
-        req.setAttribute("Payment",temp_obj_payment);
+        //req.setAttribute("Payment",temp_obj_payment);
+        req.setAttribute("payID",Pr);
         return "Payment.jsp";
     }
 }

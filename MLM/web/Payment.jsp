@@ -67,7 +67,7 @@
                                                             <td>${s.getRemark()}</td>
                                                             <td>
 
-                                                                <span class="tip" ><a href="Controller?Action=DeleteCategory&did=" class="Delete" name="delete name" title="Delete"  ><img src="images/icon/icon_delete.png" ></a></span> 
+                                                                <span class="tip" ><a href="Controller?Action=DeletePayment&did=${s.getPay_id()}" class="Delete" name="delete name" title="Delete"  ><img src="images/icon/icon_delete.png" ></a></span> 
                                                             </td>
                                                         </tr>
                                                     </c:forEach>  
@@ -81,11 +81,17 @@
                                                 <a class="btn  btn-large on_prev" name="#tab2"  href="javascript:void(0)" id="on_prev_pro" onClick="jQuery('#validation_demo').validationEngine('hideAll')" title="Go Back" ><i class="icon-share-alt"></i>  Back </a>
                                                 <a class="btn  btn-large" href="javascript:void(0)" onClick="ResetForm()" title="Reset  Form" >Clear Form</a>
                                             </div>        
-                                            <form id="validation_demo" method="post" action="Controller?Action=ShowPayment"> 
+                                            <form id="validation_demo" method="post" action="Controller?Action=SavePayment"> 
                                                 <input type="hidden" name="Action" id="Action" value="SavePayment" class="validate[required] medium" />        
-                                                <input type="hidden" name="SubAction" id="SubAction" value="<%if (request.getParameter("uid") != null) {
-                                                        out.print("Update");
-                                                    }%>" class="validate[required] medium" />        
+                                                
+                                                
+                                                <div class="section ">
+                                                    <label> Payment ID</label>   
+                                                    <div> 
+                                                        <input type="text" class="validate[required] small" name="payID" id="payID" readonly="readonly" value="${payID.getPay_id()}">
+                                                    </div>
+                                                </div>
+                                                
                                                 <div class="section ">
                                                     <label> Payment Date</label>   
                                                     <div> 
@@ -98,7 +104,9 @@
                                                     <div>
                                                         <select id="Order" name="Order" data-placeholder="Choose a Order..."
                                                                 class="chzn-select validate[required]" tabindex="2">
-                                                            <option></option>
+                                                            <c:forEach items="${Order}" var="s">
+                                                                <option value="${s.getOrder_id()}" name="${s.getOrder_id()}">${s.getOrder_id()}</option>
+                                                            </c:forEach>
                                                         </select>
                                                     </div>
                                                 </div>

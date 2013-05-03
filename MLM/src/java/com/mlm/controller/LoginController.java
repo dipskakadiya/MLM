@@ -4,13 +4,11 @@
  */
 package com.mlm.controller;
 
-import com.mlm.action.*;
-import com.mlm.dbutility.ObjectCreator;
+import com.mlm.bean.User;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Properties;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,9 +18,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author sai
  */
-public class Controller extends HttpServlet {
-
-    private final static String ACTION_MAPPING = "com/mlm/controller/ActionMapping.properties";
+public class LoginController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -38,22 +34,33 @@ public class Controller extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        HttpSession session = request.getSession();
+        HttpSession session = request.getSession(true);
         try {
             /* TODO output your page here. You may use following sample code. */
-        
-                String theAction = request.getParameter("Action");
-                Properties map = new Properties();
-                map.load(this.getClass().getClassLoader().getResourceAsStream(ACTION_MAPPING));
-                String action_class = map.getProperty(theAction);
-                Action action = (Action) ObjectCreator.createObject(action_class);
-                //session.getAttribute("sessionMemid")
-                request.setAttribute("cur_user",1);
-                String view = action.execute(request, response);
-                if (view != null) {
-                    RequestDispatcher rd = request.getRequestDispatcher(view);
-                    rd.forward(request, response);
+            String username = request.getParameter("username");
+            String password = request.getParameter("password");
+            boolean rememberMe = request.getParameter("remember").equalsIgnoreCase("true");
+
+            User user = new User();
+            user.setUsername(username);
+            user.setPassword(password);
+            user.userlogin();
+
+            if (user.getStatus().isEmpty()) {
+                session.setAttribute("sessionMemid", user.getMemid());
+                session.setAttribute("sessionUserName", user.getUsername());
+                //System.out.println(session.getAttribute("sessionUserName"));
+                int time = 60 * 60 * 24 * 30;
+                Cookie d = new Cookie("MlmLogedIn", "true");
+                d.setMaxAge(time);
+                response.addCookie(d);
+                if (rememberMe) {
+                    Cookie c = new Cookie("Mlmuser",user.getUsername());
+                    c.setMaxAge(time);
+                    response.addCookie(c);
                 }
+            }
+            out.println(user.getStatus());
         } finally {
             out.close();
         }

@@ -32,16 +32,32 @@ $(document).ready(function () {
 			  return false;
 		  }		
 		 alertHide();
-		 loading('Checking',1);		
-		 setTimeout( "unloading()", 2000 );
-		 setTimeout( "Login()", 2500 );
+		 loading('Checking',1);
+                 $.post("LoginController", {
+                     username: $("input[name='username']").val(),
+                     password: $("input[name='password']").val(),
+                     remember: $("input[name='remember']").attr("checked")? true : false
+                 },
+                 function(response) {
+                     if($.trim(response) == 'null') {
+                        setTimeout( "unloading()", 2000 );
+                        setTimeout( "Login()", 2500 );
+                     }else{
+                        setTimeout( "unloading()",10 );
+                        alertMessage("error",response);
+                     }
+                 });
 	});	
 });			
 	  //Login function
 	  function Login(){
+                  
 		  $("#login").animate({   opacity: 1,top: '49%' }, 200,function(){
+                            
 			   $('.userbox').show().animate({ opacity: 1 }, 500);
+                                
 				$("#login").animate({   opacity: 0,top: '60%' }, 500,function(){
+                                               // console.log("Loader started");
 						$(this).fadeOut(200,function(){
 								$(".text_success").slideDown();
 								$("#successLogin").animate({opacity: 1,height: "200px"},500);   			     
@@ -79,7 +95,7 @@ $(document).ready(function () {
 					  		$('#overlay').css('opacity',0.4).fadeIn(400,function(){  $('#preloader').fadeIn(400);	});
 					  return  false;
 			  		 }
-			$('#preloader').fadeIn();	  
+			$('#preloader').show();	  
 	   }
 	   // Unloading 
 	  function unloading() { 
