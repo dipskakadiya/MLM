@@ -43,7 +43,7 @@ public class Controller extends HttpServlet {
         try {
             String view=null;
             /* TODO output your page here. You may use following sample code. */
-            if (session.getAttribute("sessionMemid") != null ||session.getAttribute("sessionMemid").equals("") ) {
+            if (session.getAttribute("sessionUserName") == null ||session.getAttribute("sessionUserName").equals("") ) {
                 view="index.jsp";
             } else {
                 String theAction = request.getParameter("Action");

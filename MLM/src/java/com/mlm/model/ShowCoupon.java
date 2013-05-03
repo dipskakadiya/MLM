@@ -5,7 +5,7 @@
 package com.mlm.model;
 
 import com.mlm.action.Action;
-import com.mlm.bean.Comission;
+import com.mlm.bean.Commission;
 import com.mlm.bean.Coupon;
 import com.mlm.bean.Product;
 import com.mlm.dbutility.DBConnection;
