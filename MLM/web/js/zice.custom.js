@@ -232,7 +232,8 @@ $(function() {
 	$('.logout').live('click',function() { 
 		  loading('Logout',1);
 		  setTimeout("unloading()",1500);
-		  setTimeout( "window.location.href='index.jsp'", 2000 );
+                  
+		  setTimeout( "window.location.href='Controller?Action=Logout'", 2000 );
 	  });
 	// Wizard Steps 
 	 $('#wizard').smartWizard();

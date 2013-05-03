@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.text.View;
 
 /**
  *
@@ -40,10 +41,10 @@ public class Controller extends HttpServlet {
         PrintWriter out = response.getWriter();
         HttpSession session = request.getSession();
         try {
+            String view=null;
             /* TODO output your page here. You may use following sample code. */
-            if (session.isNew()) {
-                RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-                    rd.forward(request, response);
+            if (session.getAttribute("sessionMemid") != null ||session.getAttribute("sessionMemid").equals("") ) {
+                view="index.jsp";
             } else {
                 String theAction = request.getParameter("Action");
                 Properties map = new Properties();
@@ -52,12 +53,12 @@ public class Controller extends HttpServlet {
                 Action action = (Action) ObjectCreator.createObject(action_class);
                 //session.getAttribute("sessionMemid")
                 request.setAttribute("cur_user", session.getAttribute("sessionMemid"));
-                String view = action.execute(request, response);
-                if (view != null) {
+                view = action.execute(request, response);
+            }
+            if (view != null) {
                     RequestDispatcher rd = request.getRequestDispatcher(view);
                     rd.forward(request, response);
                 }
-            }
         } finally {
             out.close();
         }
