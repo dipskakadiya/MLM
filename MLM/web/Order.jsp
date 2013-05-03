@@ -344,6 +344,7 @@
             $('#T_GrossAll').html(T_GrossAll);
             $('#T_TaxAll').html(T_TaxAll);
             $('#T_AmountAll').html(t_AmountAll);
+            alertMessage("error","Order ADD!!!");
         }
 
         function updateQty(ProductQty){
@@ -367,7 +368,7 @@
             $('#T_GrossAll').html(T_GrossAll);
             $('#T_TaxAll').html(T_TaxAll);
             $('#T_AmountAll').html(t_AmountAll);
-
+            alertMessage("error","Order Update!!!");
         }
 
         function RemoveItem(ProductQty){
@@ -384,6 +385,7 @@
             $('#T_TaxAll').html(T_TaxAll);
             $('#T_AmountAll').html(t_AmountAll);
             $('#'+ProductQty).remove();
+            alertMessage("error","Order Deleted!!!");
         }
     
         //Getting All Product
