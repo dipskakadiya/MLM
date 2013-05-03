@@ -21,23 +21,24 @@ public class ShowOrder implements Action {
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse res) {
         ArrayList<Categories> Cat_All = null;
-        ArrayList<OrderDetail> TRD_All = null;
-        Order Order = null;
+        Order Or = null;
         //Get All Categories
         Categories Cat = new Categories();
         Cat_All = Cat.getAll();
 
         if (req.getParameter("uid") != null) {
             //Get Order info for Update
-            Order = new Order();
-            Order.getSinglelOrder(Integer.parseInt(req.getParameter("uid")));
+            Or= new Order();
+            Or.getSinglelOrder(Integer.parseInt(req.getParameter("uid")));
+            System.out.println(Or.getTotal());
+            ArrayList<OrderDetail> od=Or.getOrder();
+            System.out.println(od.get(0).getTotal());
         } else {
             //Get Orderid for new Order
-            Order = new Order();
-            Order.getNextID();
+            Or= new Order();
+            Or.getNextID();
         }
-        req.setAttribute("Trade", Order);
-        req.setAttribute("TradeDetail", TRD_All);
+        req.setAttribute("Trade", Or);
         req.setAttribute("Categories", Cat_All);
         return "Order.jsp";
     }

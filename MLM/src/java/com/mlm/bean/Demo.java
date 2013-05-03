@@ -4,12 +4,8 @@
  */
 package com.mlm.bean;
 
-import com.mlm.bean.Member;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 /**
  *
@@ -17,10 +13,10 @@ import java.util.logging.Logger;
  */
 public class Demo {
     public static void main(String [ ] args){
-        SendMail sm=new SendMail();
-        //DBConnection db= DBConnection.db;
-        //db.sendmail("hiren_879@yahoo.com", "Testing",  "hi how r u ");
-        sm.sendMail("201212030mayur@gmail.com", "hi how r u ");
-         
+        Order or=new Order();
+        or.getSinglelOrder(0);
+        System.out.println(or.getTotal());
+        ArrayList<OrderDetail> od=or.getOrder();
+        System.out.println(od.get(0).getQty());
     }
 }

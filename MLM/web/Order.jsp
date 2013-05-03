@@ -295,7 +295,7 @@
 
     var Count=0;
     <c:if test="${Trade.getTotal()>0 }">
-        <c:forEach items="${TradeDetail}" var="s">
+        <c:forEach items="${Trade.getOrder()}" var="s">
             Ttax=(parseFloat(${s.getTGross()})*parseFloat(${s.getTaxPer()}))/100;
             $("#ItemList").append("<tr id='TRProduct"+Count+"'><td id='TDProduct'>${s.getItemName()}<input type='hidden' id='ProductID' name='mygrid' value='${s.getItemID()}'/></td>         <td id='TDProductQty'><input type='text' id='ProductQty' class='small' onchange='updateQty(\"TRProduct"+Count+"\");' name='mygrid' value='${s.getQty()}'/></td>     <td id='TDProductRate'>${s.getRate()}</td>         <td id='TDGrossTotal'>${s.getTGross()}<input type='hidden' id='GrossTotal' value='${s.getTGross()}'/></td>          <td id='TDProductTax'>${s.getTaxPer()}<input type='hidden' id='ProductTax' value='"+Ttax+"'/></td>       <td id='TDTotal'>${s.getTotal()}<input type='hidden' id='Total' value='${s.getTotal()}'/></td>            <td id='TDAction'><img src='images/core/fancy_close.png' id='"+Count+"' onclick='RemoveItem(\"TRProduct"+Count+"\");' /></td></tr>");
             Count++;   
