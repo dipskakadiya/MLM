@@ -7,8 +7,6 @@ package com.mlm.bean;
 import com.mlm.dbutility.DBConnection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -56,23 +54,26 @@ public class User {
         this.password = pasword;
     }
     //ResultSet Rs=db.querys("select * from TBL_MEMBER where USERNAME='"+username+"' and PASSWORD='"+password+"'");
-    public void userlogin(){
+    public boolean userlogin(){
         try {
             ResultSet Rs=db.querys("select MEM_ID,USERNAME,PASSWORD from TBL_MEMBER where USERNAME='"+username+"'");
             if(Rs.next()){
                 Integer tmemid=Rs.getInt("MEM_ID");
                 String tusername=Rs.getString("USERNAME");
                 String tpwd=Rs.getString("PASSWORD");
-                System.out.println(tmemid+" "+tusername+" "+tpwd);
-                                System.out.println(tmemid+" "+tusername+" "+username);
+                System.out.println(tmemid+" "+tusername+" "+tpwd+""+username);
+                memid=Rs.getInt("MEM_ID");
 
-                if(tusername.compareTo(username)==0){
-                    System.out.print("matched");
+                if(tusername.equalsIgnoreCase(username)){
+                    if(tpwd.equals(password)){
+                        return true;
+                    }                   
                 }
             }
+          
         } catch (SQLException ex) {
            // Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
         }
-           
+            return false; 
     }    
 }

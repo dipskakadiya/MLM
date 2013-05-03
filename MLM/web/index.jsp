@@ -53,7 +53,7 @@
           <div class="inner clearfix">
           <div class="logo" ><img src="images/logo/logo_admin.png" alt="ziceAdmin" /></div>
           <div class="formLogin">
-              <form name="formLogin"  id="formLogin" method="post">
+              <form name="formLogin"  id="formLogin">
                 <div class="tip">
                       <input name="username" type="text"  id="username_id"  title="Username"   />
                 </div>

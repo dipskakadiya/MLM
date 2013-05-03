@@ -39,12 +39,12 @@ $(document).ready(function () {
                      remember: $("input[name='remember']").attr("checked")? true : false
                  },
                  function(response) {
-                     if($.trim(response) == 'null') {
+                     if($.trim(response) == 'true') {
                         setTimeout( "unloading()", 2000 );
                         setTimeout( "Login()", 2500 );
                      }else{
                         setTimeout( "unloading()",10 );
-                        alertMessage("error",response);
+                        alertMessage("error","Invalid Usename and password!!!");
                      }
                  });
 	});	

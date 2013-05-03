@@ -41,19 +41,23 @@ public class Controller extends HttpServlet {
         HttpSession session = request.getSession();
         try {
             /* TODO output your page here. You may use following sample code. */
-        
+            if (session.isNew()) {
+                RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+                    rd.forward(request, response);
+            } else {
                 String theAction = request.getParameter("Action");
                 Properties map = new Properties();
                 map.load(this.getClass().getClassLoader().getResourceAsStream(ACTION_MAPPING));
                 String action_class = map.getProperty(theAction);
                 Action action = (Action) ObjectCreator.createObject(action_class);
                 //session.getAttribute("sessionMemid")
-                request.setAttribute("cur_user",1);
+                request.setAttribute("cur_user", session.getAttribute("sessionMemid"));
                 String view = action.execute(request, response);
                 if (view != null) {
                     RequestDispatcher rd = request.getRequestDispatcher(view);
                     rd.forward(request, response);
                 }
+            }
         } finally {
             out.close();
         }

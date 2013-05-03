@@ -44,9 +44,9 @@ public class LoginController extends HttpServlet {
             User user = new User();
             user.setUsername(username);
             user.setPassword(password);
-            user.userlogin();
+            boolean bn=user.userlogin();
 
-            if (user.getStatus().isEmpty()) {
+            if (bn!=false) {
                 session.setAttribute("sessionMemid", user.getMemid());
                 session.setAttribute("sessionUserName", user.getUsername());
                 //System.out.println(session.getAttribute("sessionUserName"));
@@ -60,13 +60,13 @@ public class LoginController extends HttpServlet {
                     response.addCookie(c);
                 }
             }
-            out.println(user.getStatus());
+            out.println(bn);
         } finally {
             out.close();
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+        // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP
      * <code>GET</code> method.
