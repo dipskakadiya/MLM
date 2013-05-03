@@ -25,7 +25,7 @@ public class ShowMember implements Action {
         Member mem = null;
         Integer Mem_id = null;
         //Get All Member 
-        MemberTree MT = new MemberTree(1);
+        MemberTree MT = new MemberTree(Integer.parseInt(req.getAttribute("cur_user").toString()));
         Member_All = MT.GetList();
 
         //Get All Country

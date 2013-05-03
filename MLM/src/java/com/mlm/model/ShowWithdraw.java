@@ -19,7 +19,7 @@ public class ShowWithdraw implements Action {
     public String execute(HttpServletRequest req, HttpServletResponse res) {
         ArrayList<Withdraw> withdraw_All=null;
         Withdraw Wid=new Withdraw();
-        withdraw_All=Wid.getAll();
+        withdraw_All=Wid.getAll(Integer.parseInt(req.getAttribute("cur_user").toString()));
         req.setAttribute("withdraw",withdraw_All);
         return "Withdraw.jsp";
         

@@ -27,14 +27,14 @@
                         <div class="widget-content">
 
 
-                            <div id="UITab" class="clearfix" style="position:relative;">
+                            <div id="UITab" st class="clearfix" style="position:relative;">
                                 <ul class="tabs">
                                     <li><a href="#tab1">  Live Payment  <img src="images/icon/new.gif" width="20" height="9" /></a></li>            
                                 </ul>
 
                                 <div class="tab_container" >
                                     <div id="tab1" class="tab_content"> 
-                                        <div class="load_page">
+                                        <div  st class="load_page">
                                             <div class="alert alert-block  alert-info">
                                                 Can see action with click  <strong>Payment !</strong>
                                             </div>
@@ -83,15 +83,15 @@
                                             </div>        
                                             <form id="validation_demo" method="post" action="Controller?Action=SavePayment"> 
                                                 <input type="hidden" name="Action" id="Action" value="SavePayment" class="validate[required] medium" />        
-                                                
-                                                
+
+
                                                 <div class="section ">
                                                     <label> Payment ID</label>   
                                                     <div> 
                                                         <input type="text" class="validate[required] small" name="payID" id="payID" readonly="readonly" value="${payID.getPay_id()}">
                                                     </div>
                                                 </div>
-                                                
+
                                                 <div class="section ">
                                                     <label> Payment Date</label>   
                                                     <div> 
@@ -147,7 +147,6 @@
     <!-- Mirrored from zicedemo.com/1.7/dashboard.html by HTTrack Website Copier/3.x [XR&CO'2010], Thu, 10 Jan 2013 06:25:10 GMT -->
 </html>
 
-
 <script>
     jQuery(document).ready(function() {
         jQuery("#demovalidation").validationEngine({
@@ -188,6 +187,8 @@
                 }); 
             }); 
             ResetForm();
-        });	
+        });
+	
     });
 </script>
+

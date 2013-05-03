@@ -5,8 +5,6 @@
 		<li class="setting">Welcome, <b class="red">${sessionUserName}</b>
 			<ul class="subnav">
 				<li><a href="Profile.jsp">Profile</a></li>
-				<li><a href="#">Discussion Board</a></li>
-				<li><a href="#">Reset password</a></li>
 				<!-- br class="clearfix"/-->
 			</ul>
 		</li>

@@ -17,6 +17,15 @@ public class User {
     private String password;
     private DBConnection db;
     private String status;
+    private String Type;
+
+    public String getType() {
+        return Type;
+    }
+
+    public void setType(String Type) {
+        this.Type = Type;
+    }
 
     public User() {
         db= DBConnection.db;
@@ -56,11 +65,12 @@ public class User {
     //ResultSet Rs=db.querys("select * from TBL_MEMBER where USERNAME='"+username+"' and PASSWORD='"+password+"'");
     public boolean userlogin(){
         try {
-            ResultSet Rs=db.querys("select MEM_ID,USERNAME,PASSWORD from TBL_MEMBER where USERNAME='"+username+"'");
+            ResultSet Rs=db.querys("select MEM_ID,USERNAME,PASSWORD,TYPE from TBL_MEMBER where USERNAME='"+username+"'");
             if(Rs.next()){
                 Integer tmemid=Rs.getInt("MEM_ID");
                 String tusername=Rs.getString("USERNAME");
                 String tpwd=Rs.getString("PASSWORD");
+                Type=Rs.getString("TYPE");
                 memid=Rs.getInt("MEM_ID");
                 if(tusername.equalsIgnoreCase(username)){
                     if(tpwd.equals(password)){

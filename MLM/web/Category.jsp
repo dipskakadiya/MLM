@@ -176,6 +176,16 @@
     <%}%>
         });
 </script>
-
+<script type="text/javascript">
+    $(document).ready(function(){
+       
+<%if (request.getParameter("uid") != null) {%>
+        $(".load_page").hide();
+        $('.show_add').show();
+         
+<%}%>
+   
+    });
+</script>
 
 

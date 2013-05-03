@@ -19,7 +19,7 @@ public class ShowComission implements Action{
     public String execute(HttpServletRequest req, HttpServletResponse res) {
         ArrayList<Commission> comision_All;
         Commission Com=new Commission();
-        comision_All=Com.getAll();
+        comision_All=Com.getAll(Integer.parseInt(req.getAttribute("cur_user").toString()));
         req.setAttribute("com",comision_All);
         return "Comission.jsp";    
     }

@@ -1,40 +1,57 @@
 <div id="left_menu">
 	<ul id="main_menu" class="main_menu">
-		<li class="select"><a href="Dashboard.jsp"><span
+            
+             <%  Object User_Type = session.getAttribute("sessionUType");%>
+               
+            
+		<li class="select"><a href="Controller?Action=CallDashboard"><span
 				class="ico gray shadow home"></span><b>Dashboard</b></a></li>
 		<li><a href="Controller?Action=ShowMember"><span
 				class="ico gray shadow window"></span><b>Member</b></a>
 			<ul>
 				<li><a href="Controller?Action=ShowMember">Manage Mem.</a></li>
 				<li><a href="Controller?Action=ShowMemberChain">Mem. Chart</a></li>
+                               <%if (User_Type.equals("Admin") == true) {%>
 				<li><a href="ApproveMember.jsp">Approve Mem.</a></li>
+                                <%}%>
+                                
 			</ul></li>
+                <%if (User_Type.equals("Admin") == true) {%>        
 		<li><a href="Controller?Action=ShowProduct"><span class="ico gray  dimensions"></span><b>Product</b></a>
 			<ul>
 				<li><a href="Controller?Action=ShowProduct">Product</a></li>
 				<li><a href="Controller?Action=ShowCategory"> Category </a></li>
 			</ul></li>
+               <%}%>         
+               <%if (User_Type.equals("Client") == true) {%>        
 		<li><a href="Controller?Action=ShowTrade"><span
 				class="ico gray shadow   encrypt"></span><b>Order</b> </a>
 			<ul>
 				<li><a href="Controller?Action=ShowTrade"> Order </a></li>
 				<li><a href="Controller?Action=ViewTrade">View Order</a></li>
 			</ul></li>
+               
 		<li><a href="Controller?Action=ShowPayment"><span
 				class="ico gray shadow  spreadsheet"></span><b>Payment</b> </a></li>
-		<li><a href="Controller?Action=ShowComission"><span
+		
+                <li><a href="Controller?Action=ShowComission"><span
 				class="ico gray shadow   satellite"></span><b>Commission</b> </a>
 			<ul>
 				<li><a href="Controller?Action=ShowComission"> Commission </a></li>
 				<li><a href="Controller?Action=ShowWithdraw">Withdraw</a></li>
 			</ul></li>
-		
+                <%}%>
+		<%if (User_Type.equals("Admin") == true) {%>
                <li><a href="gallery.html"><span
 				class="ico gray shadow pictures_folder"></span><b>Reports </b></a></li>
-		<li><a href="Trash.jsp"><span
-				class="ico gray  shadow firewall"></span><b>Trash</b></a></li>
+                <%}%> 
+                                
+		<!--li><a href="Trash.jsp"><span
+				class="ico gray  shadow firewall"></span><b>Trash</b></a></li-->
+                
 		<li><a href="Controller?Action=ShowCoupon"><span
 				class="ico gray  shadow location"></span><b>Coupon</b></a></li>
+                
 	</ul>
 </div>
 

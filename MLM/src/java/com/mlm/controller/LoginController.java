@@ -49,6 +49,7 @@ public class LoginController extends HttpServlet {
             if (bn!=false) {
                 session.setAttribute("sessionMemid", user.getMemid());
                 session.setAttribute("sessionUserName", user.getUsername());
+                session.setAttribute("sessionUType", user.getType());
                 //System.out.println(session.getAttribute("sessionUserName"));
                 int time = 60 * 60 * 24 * 30;
                 Cookie d = new Cookie("MlmLogedIn", "true");

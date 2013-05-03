@@ -5,7 +5,6 @@
 package com.mlm.model;
 
 import com.mlm.action.Action;
-import com.mlm.bean.Ajax;
 import com.mlm.bean.City;
 import com.mlm.bean.Product;
 import com.mlm.bean.State;

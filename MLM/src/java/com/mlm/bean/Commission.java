@@ -63,11 +63,11 @@ public class Commission {
         this.Remarks = Remarks;
     }
     
-    public ArrayList<Commission> getAll(){
+    public ArrayList<Commission> getAll(int MemID){
         comission_All=new ArrayList<Commission>();
         String date=null;
         int i=0;
-        ResultSet rs_comission=db.querys("select * from Commission order by COM_ID");
+        ResultSet rs_comission=db.querys("select * from Commission where MEM_ID="+MemID+" order by COM_ID");
         try {
             while (rs_comission.next()) {
                 

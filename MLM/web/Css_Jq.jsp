@@ -50,5 +50,5 @@
 
 <!--script type="text/javascript" src="components/fullcalendar/fullcalendar.js"></script>
 <script type="text/javascript" src="components/bootstrap/bootstrap.min.js"></script>
-<script type="text/javascript" src="components/flot/flot.js"></script>
+
 <script type="text/javascript" src="js/jquery.cookie.js"></script-->

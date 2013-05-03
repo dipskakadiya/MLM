@@ -11,8 +11,7 @@ $(document).ready(function () {
 		alertHide();
 	});
 	// Check box  iphone Style
-	$(".on_off_checkbox").iphoneStyle();
-	// Tooltip
+	$(".on_off_checkbox").iphoneStyle();	// Tooltip
 	$('.tip a ').tipsy({gravity: 'sw'});
 	// Loading Login Animation
 	$('#login').show().animate({   opacity: 1 }, 2000);
@@ -64,7 +63,7 @@ $(document).ready(function () {
 						});							  
 				 })	
 		   })	
-		  setTimeout( "window.location.href='Dashboard.jsp'", 3000 );
+		  setTimeout( "window.location.href='Controller?Action=CallDashboard'", 3000 );
 	  }
 	 //Hidden All  Alert Message Before
 	  function alertHide(){

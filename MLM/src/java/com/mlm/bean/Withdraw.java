@@ -56,12 +56,12 @@ public class Withdraw {
         this.Amount = Amount;
     }
 
-    public ArrayList<Withdraw> getAll() {
+    public ArrayList<Withdraw> getAll(int memid) {
         try {
             withdraw_All = new ArrayList<Withdraw>();
             String date = null;
             int i = 0;
-            ResultSet rs_withdraw = db.querys("select * from COM_WITHDRAW order by WITH_ID");
+            ResultSet rs_withdraw = db.querys("select * from COM_WITHDRAW where MEM_ID="+memid+" order by WITH_ID");
             while (rs_withdraw.next()) {
 
                 Withdraw wdr = new Withdraw();
