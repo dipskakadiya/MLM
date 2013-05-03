@@ -33,7 +33,7 @@ public class ManageMember implements Action{
             Mr.setEmail(req.getParameter("email"));
             Mr.setMobile(req.getParameter("mobile"));
             Mr.setImage(req.getParameter("Pimage"));
-            Mr.setParent_ID(1);
+            Mr.setParent_ID((Integer.parseInt(req.getAttribute("cur_user").toString())));
             if(req.getParameter("SubAction").equals("Update")){
                 Mr.Update();
             }else{        

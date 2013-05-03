@@ -157,6 +157,8 @@ public class Member {
         db.queryi("insert into MEMBER_DETAIL values("+memid+",'"+Firstname+"','"+lastname+"','"+optgender+"','1-mar-1992','"+address+"',"+city+","+state+","+country+","+pincode+","+mobile+",'"+email+"','"+image+"')");
         int step=db.queryint("select max(STEP)+1 from MEMBER_CHAIN where CHILD="+Parent_ID);
         db.queryi("insert into MEMBER_CHAIN values("+Parent_ID+","+memid+","+step+")");
+        SendMail sm=new SendMail();
+        sm.sendMail(email, "MLM Your Username="+username+" and Password="+memid+"@"+username+"@"+memid);
     }
     
     //Update 

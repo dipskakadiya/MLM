@@ -17,19 +17,10 @@ import java.util.logging.Logger;
  */
 public class Demo {
     public static void main(String [ ] args){
-        DBConnection db= DBConnection.db;
-        String str="";
-        ResultSet Rs=db.querys("select ITEM_NAME,(select sum(QTY) from ORDER_DETAIL OD where TI.ITEM_ID=OD.ITEM_ID)as Total  from TBL_ITEM TI");
-        try {
-            while(Rs.next()){
-                if(Rs.getString("Total")!=null){
-                    str+="<set label='"+Rs.getString("ITEM_NAME")+"' value='"+Rs.getString("Total")+"' />";
-                }
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Demo.class.getName()).log(Level.SEVERE, null, ex);
-        }
-            System.out.print(str);
+        SendMail sm=new SendMail();
+        //DBConnection db= DBConnection.db;
+        //db.sendmail("hiren_879@yahoo.com", "Testing",  "hi how r u ");
+        sm.sendMail("201212030mayur@gmail.com", "hi how r u ");
          
     }
 }
