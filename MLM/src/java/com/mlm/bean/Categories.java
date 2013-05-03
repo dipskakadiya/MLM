@@ -52,7 +52,7 @@ public class Categories {
         db.queryud("delete from TBL_CTG where CTG_ID="+catid);
     }
     
-    public ArrayList<Categories> getall(){
+    public ArrayList<Categories> getAll(){
         try {
             Cat_All=new ArrayList<Categories>();
             ResultSet Rs_Cat = db.querys("select * from TBL_CTG order by CTG_ID");

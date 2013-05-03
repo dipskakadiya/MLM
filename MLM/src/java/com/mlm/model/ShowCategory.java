@@ -6,11 +6,7 @@ package com.mlm.model;
 
 import com.mlm.action.Action;
 import com.mlm.bean.Categories;
-import com.mlm.dbutility.DBConnection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Locale.Category;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -24,7 +20,7 @@ public class ShowCategory implements Action {
         ArrayList<Categories> Cat_All = null;
         Categories Cr = null;
             Categories cat=new Categories();
-            Cat_All=cat.getall();
+            Cat_All=cat.getAll();
             if (req.getParameter("uid") != null) {
                 //Get Trade info for Update
                 for(int i=0;i<Cat_All.size();i++){

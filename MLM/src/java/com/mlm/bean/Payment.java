@@ -5,6 +5,11 @@
 package com.mlm.bean;
 
 import com.mlm.dbutility.DBConnection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -19,6 +24,7 @@ public class Payment {
     private int amount;
     private String remark;
     private DBConnection db;
+    private ArrayList<Payment> AllPayment= null;   
     
     public Payment() {
          db = new DBConnection();
@@ -79,4 +85,29 @@ public class Payment {
     public void delete(){
         db.queryud("delete from PAYMENT where 	PAY_ID="+pay_id);
     }
+    
+    public ArrayList<Payment> getAll(){
+        try {
+            AllPayment = new ArrayList<Payment>();
+                ResultSet rs = db.querys("select * from PAYMENT");
+                while(rs.next()){
+                    Payment Pay_Obj = new Payment();
+                    Pay_Obj.setAmount(rs.getInt("AMOUNT"));
+                    Pay_Obj.setMem_id(rs.getInt("MEM_ID"));
+                    Pay_Obj.setOrder_id(rs.getInt("ORDER_ID"));
+                    Pay_Obj.setPay_date(rs.getString("PAY_DATE"));
+                    Pay_Obj.setPay_id(rs.getInt("PAY_ID"));
+                    Pay_Obj.setRemark(rs.getString("REMARK"));
+                    AllPayment.add(Pay_Obj);
+                }
+        } catch (Exception ex) {
+            ex.getMessage();
+        }
+        return AllPayment;
+    }
+    
+    public void getNextID(){
+        pay_id=db.queryint("select max(PAY_ID)+1 from PAYMENT");
+    }
+    
 }

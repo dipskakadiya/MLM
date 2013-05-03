@@ -5,7 +5,6 @@
 package com.mlm.bean;
 
 import com.mlm.dbutility.DBConnection;
-import java.text.SimpleDateFormat;
 
 
 
@@ -31,6 +30,10 @@ public class Member {
     private String image;
     private DBConnection db;
 
+    public Member() {
+         db = new DBConnection();
+    }
+
     public Integer getParent_ID() {
         return Parent_ID;
     }
@@ -38,9 +41,7 @@ public class Member {
     public void setParent_ID(Integer Parent_ID) {
         this.Parent_ID = Parent_ID;
     }
-    public Member() {
-         db = new DBConnection();
-    }
+
     public Integer getMemid() {
         return memid;
     }
@@ -171,5 +172,9 @@ public class Member {
             System.out.println("In delete");
             db.queryud("delete from MEMBER_DETAIL where MEM_ID="+memid);
             db.queryud("delete from TBL_MEMBER where MEM_ID="+memid);
+    }
+    
+    public void getNextID(){
+        memid=db.queryint("select max(MEM_ID)+1 from TBL_MEMBER");
     }
 }

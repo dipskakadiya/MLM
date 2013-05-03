@@ -8,7 +8,6 @@ import com.mlm.action.Action;
 import com.mlm.bean.Categories;
 import com.mlm.bean.Product;
 import com.mlm.dbutility.DBConnection;
-import java.sql.ResultSet;
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,63 +17,32 @@ import javax.servlet.http.HttpServletResponse;
  * @author sai
  */
 public class ShowProduct implements Action {
-
-    DBConnection db;
-
-    public ShowProduct() {
-        db = new DBConnection();
-    }
-
-    @Override
+  @Override
     public String execute(HttpServletRequest req, HttpServletResponse res) {
         ArrayList<Categories> Cat_All = null;
         ArrayList<Product> Product_All = null;
-        Product Pr = null;
-        Integer Product_id = null;
-        try {
-            //Get All Categories
-            ResultSet Rs_Cat = db.querys("select * from TBL_CTG order by CTG_NAME");
-            Cat_All = new ArrayList<Categories>();
-            while (Rs_Cat.next()) {
-                Categories ct = new Categories();
-                ct.setCatid(Rs_Cat.getInt("CTG_ID"));
-                ct.setCatname(Rs_Cat.getString("CTG_NAME"));
-                Cat_All.add(ct);
-            }
-            //Get All Product 
-            ResultSet Rs_Product = db.querys("select TI.*,TC.CTG_NAME from TBL_ITEM TI,TBL_CTG TC where TI.CTG_ID=TC.CTG_ID order by TI.ITEM_ID");
-            Product_All = new ArrayList<Product>();
-            while (Rs_Product.next()) {
-                Product T_pr = new Product();
-                T_pr.setItemid(Rs_Product.getInt("ITEM_ID"));
-                T_pr.setItemname(Rs_Product.getString("ITEM_NAME"));
-                T_pr.setStock(Rs_Product.getInt("STOCK"));
-                T_pr.setRate(Rs_Product.getInt("RATE"));
-                T_pr.setTax(0);
-                T_pr.setCtgid(Rs_Product.getInt("CTG_ID"));
-                T_pr.setPrelevel(Rs_Product.getInt("PREORDER_LEVEL"));
-                T_pr.setCtgname(Rs_Product.getString("CTG_NAME"));
-                T_pr.setImg(Rs_Product.getString("IMAGE"));
-                Product_All.add(T_pr);
+        Product PRoduct = null;
+        //Get All Categories
+        Categories Cat = new Categories();
+        Cat_All = Cat.getAll();
 
-            }
-            if (req.getParameter("uid") != null) {
-                //Get Product info for Update
-                for(int i=0;i<Product_All.size();i++){
-                    if(Product_All.get(i).getItemid()==Integer.parseInt(req.getParameter("uid"))){
-                        Pr=Product_All.get(i);
-                    }
+        //Get All Product 
+        Product Pr = new Product();
+        Product_All = Pr.getAll();
+
+        if (req.getParameter("uid") != null) {
+            //Get Product info for Update
+            for (int i = 0; i < Product_All.size(); i++) {
+                if (Product_All.get(i).getItemid() == Integer.parseInt(req.getParameter("uid"))) {
+                    PRoduct = Product_All.get(i);
                 }
-            } else {
-                //Get Productid for new Product
-                Product_id = db.queryint("select max(ITEM_ID)+1 from TBL_ITEM");
-                Pr = new Product();
-                Pr.setItemid(Product_id);
             }
-        } catch (Exception ex) {
-            ex.getMessage();
+        } else {
+            //Get Productid for new Product
+            PRoduct = new Product();
+            PRoduct.getNextID();
         }
-        req.setAttribute("Product", Pr);
+        req.setAttribute("Product", PRoduct);
         req.setAttribute("ProductAll", Product_All);
         req.setAttribute("Categories", Cat_All);
         return "Product.jsp";

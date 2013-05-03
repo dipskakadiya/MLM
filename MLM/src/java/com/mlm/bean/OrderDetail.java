@@ -6,6 +6,10 @@ package com.mlm.bean;
 
 import com.mlm.dbutility.DBConnection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -22,6 +26,12 @@ public class OrderDetail {
     private Integer TaxPer;
     private Integer Tax;
     private Integer Total;
+    private ArrayList<OrderDetail> OrderDetail;
+    DBConnection db;
+
+    public OrderDetail() {
+        db = new DBConnection();
+    }
 
     public Integer getOrderId() {
         return OrderId;
@@ -100,7 +110,7 @@ public class OrderDetail {
         try {
             ResultSet rsItem = db.querys("select TI.RATE,(select sum(CT.TAX) from CTG_TAX CT where CT.CTG_ID=TI.CTG_ID) as Tax from TBL_ITEM TI where TI.ITEM_ID=" + ItemID);
             rsItem.next();
-            Rate=rsItem.getInt("RATE");
+            Rate = rsItem.getInt("RATE");
             TGross = Qty * Rate;
             Tax = TGross * rsItem.getInt("Tax") / 100;
             Total = TGross + Tax;
@@ -110,15 +120,32 @@ public class OrderDetail {
         }
     }
 
-    //Update 
-   /* public void Update(DBConnection db) {
-       Insert(db);
-       delete(db);
-    }*/
-    //Delete
+    public void delete(DBConnection db, Integer Oid) {
+        System.out.println("delete from order_detail where order_detail=" + Oid);
+        db.queryud("delete from order_detail where ORDER_ID=" + Oid);
+    }
 
-    public void delete(DBConnection db,Integer Oid) {
-        System.out.println("delete from order_detail where order_detail="+Oid);
-        db.queryud("delete from order_detail where ORDER_ID="+Oid);
-    }        
+    public ArrayList<OrderDetail> getAllorder(int orderid) {
+        try {
+            OrderDetail=new ArrayList<OrderDetail>();
+            OrderDetail TODetail;
+            ResultSet Rs_order_detail = db.querys("select * from ORDER_DETAIL OD where ORDER_ID=" + orderid);
+            while (Rs_order_detail.next()) {
+                TODetail = new OrderDetail();
+                TODetail.setOrderId(Rs_order_detail.getInt("ORDER_ID"));
+                TODetail.setItemID(Rs_order_detail.getInt("ITEM_ID"));
+                TODetail.setItemName("Dips");
+                TODetail.setQty(Rs_order_detail.getInt("QTY"));
+                TODetail.setRate(Rs_order_detail.getInt("RATE"));
+                TODetail.setTGross(Rs_order_detail.getInt("T_GROSS"));
+                TODetail.setTax(Rs_order_detail.getInt("TAX"));
+                TODetail.setTaxPer(0);
+                TODetail.setTotal(Rs_order_detail.getInt("TOTAL"));
+                OrderDetail.add(TODetail);
+            }
+        } catch (Exception ex) {
+            ex.getMessage();
+        }
+        return OrderDetail;
+    }
 }

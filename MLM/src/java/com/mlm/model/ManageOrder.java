@@ -16,11 +16,11 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author sai
  */
-public class ManageTrade implements Action {
+public class ManageOrder implements Action {
 
     DBConnection db;
 
-    public ManageTrade() {
+    public ManageOrder() {
         db = new DBConnection();
     }
 

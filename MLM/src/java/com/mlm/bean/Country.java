@@ -4,6 +4,10 @@
  */
 package com.mlm.bean;
 
+import com.mlm.dbutility.DBConnection;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
 /**
  *
  * @author sai
@@ -11,7 +15,13 @@ package com.mlm.bean;
 public class Country {
     private Integer cou_id;
     private String country; 
+    private ArrayList<Country> Country_All = null;   
+    DBConnection db;
 
+    public Country() {
+        db=new DBConnection();
+    }
+    
     public Integer getCou_id() {
         return cou_id;
     }
@@ -26,5 +36,20 @@ public class Country {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+    public ArrayList<Country> getAll(){
+        try {
+            Country_All=new ArrayList<Country>();
+            ResultSet Rs_Country = db.querys("select * from COUNTRY order by CO_ID");
+            while (Rs_Country.next()) {
+                Country cou = new Country();
+                cou.setCou_id(Rs_Country.getInt("CO_ID"));
+                cou.setCountry(Rs_Country.getString("CO_NAME"));
+                Country_All.add(cou);
+            }
+        } catch (Exception ex) {
+            ex.getMessage();
+        }
+        return Country_All;
     }
 }

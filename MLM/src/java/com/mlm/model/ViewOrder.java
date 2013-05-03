@@ -5,33 +5,35 @@
 package com.mlm.model;
 
 import com.mlm.action.Action;
-import com.mlm.bean.Commission;
+import com.mlm.bean.Order;
 import com.mlm.dbutility.DBConnection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Nadim
+ * @author sai
  */
-public class ShowComission implements Action{
-    
-    DBConnection db;
-    
-    
-    public ShowComission()
-    {
+public class ViewOrder  implements Action{
+
+     DBConnection db;
+    public ViewOrder(){
         db=new DBConnection();
     }
-
+    
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse res) {
-        ArrayList<Commission> comision_All;
-        Commission Com=new Commission();
-        comision_All=Com.getAll();
-        req.setAttribute("com",comision_All);
-        return "Comission.jsp";    
+        ArrayList<Order> OrderAll;
+        Order Or=new Order();
+        OrderAll=Or.getAll();
+        req.setAttribute("Trade", OrderAll);
+        return "Order_All.jsp";
     }
+    
     
 }
